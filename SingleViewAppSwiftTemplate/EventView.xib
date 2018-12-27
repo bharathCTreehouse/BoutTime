@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventView" customModule="SingleViewAppSwiftTemplate" customModuleProvider="target">
+            <connections>
+                <outlet property="eventTitleLabel" destination="gE4-Oj-Qhc" id="fks-7i-QCb"/>
+                <outlet property="moveDownButton" destination="pHT-dL-yZ9" id="QJr-Pf-JG4"/>
+                <outlet property="moveOnlyDownButton" destination="Q75-4K-sVd" id="Xqd-wU-9DH"/>
+                <outlet property="moveOnlyUpButton" destination="txL-LF-bqq" id="B44-EP-kAC"/>
+                <outlet property="moveUpButton" destination="aHR-8T-hHf" id="jeX-RJ-4fe"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="lYz-1A-yl6">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHR-8T-hHf">
+                    <rect key="frame" x="322.5" y="20" width="52.5" height="88"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="88" id="VsR-zF-iqy"/>
+                    </constraints>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHT-dL-yZ9">
+                    <rect key="frame" x="345" y="108" width="30" height="88"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="88" id="O6B-JC-Oi2"/>
+                    </constraints>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txL-LF-bqq">
+                    <rect key="frame" x="345" y="20" width="30" height="176"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="176" id="wUF-GM-zVh"/>
+                    </constraints>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q75-4K-sVd">
+                    <rect key="frame" x="345" y="20" width="30" height="176"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="176" id="o4F-7q-Y1A"/>
+                    </constraints>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="India lift the world cup in 28 years" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gE4-Oj-Qhc">
+                    <rect key="frame" x="8" y="36" width="290.5" height="615"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" red="0.0" green="0.32941176470588235" blue="0.47843137254901957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="aHR-8T-hHf" firstAttribute="trailing" secondItem="QHy-fn-iE5" secondAttribute="trailing" id="2y9-cR-Hqj"/>
+                <constraint firstItem="gE4-Oj-Qhc" firstAttribute="leading" secondItem="QHy-fn-iE5" secondAttribute="leading" constant="8" id="3Bi-4K-X44"/>
+                <constraint firstItem="txL-LF-bqq" firstAttribute="top" secondItem="QHy-fn-iE5" secondAttribute="top" id="CJs-Ov-PcJ"/>
+                <constraint firstItem="txL-LF-bqq" firstAttribute="trailing" secondItem="QHy-fn-iE5" secondAttribute="trailing" id="Igd-1P-qk2"/>
+                <constraint firstAttribute="trailing" secondItem="Q75-4K-sVd" secondAttribute="trailing" id="Opt-73-DHV"/>
+                <constraint firstItem="pHT-dL-yZ9" firstAttribute="trailing" secondItem="QHy-fn-iE5" secondAttribute="trailing" id="V0B-uO-A8y"/>
+                <constraint firstItem="gE4-Oj-Qhc" firstAttribute="top" secondItem="QHy-fn-iE5" secondAttribute="top" constant="16" id="bCm-GJ-Y1V"/>
+                <constraint firstItem="QHy-fn-iE5" firstAttribute="bottom" secondItem="gE4-Oj-Qhc" secondAttribute="bottom" constant="16" id="chN-8f-GmV"/>
+                <constraint firstItem="aHR-8T-hHf" firstAttribute="top" secondItem="QHy-fn-iE5" secondAttribute="top" id="lzl-Ly-d1c"/>
+                <constraint firstItem="pHT-dL-yZ9" firstAttribute="top" secondItem="aHR-8T-hHf" secondAttribute="bottom" id="sBi-mc-vAq"/>
+                <constraint firstItem="Q75-4K-sVd" firstAttribute="top" secondItem="QHy-fn-iE5" secondAttribute="top" id="tUt-Cc-YmN"/>
+                <constraint firstItem="aHR-8T-hHf" firstAttribute="leading" secondItem="gE4-Oj-Qhc" secondAttribute="trailing" constant="24" id="wqT-xX-UAf"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="QHy-fn-iE5"/>
+            <point key="canvasLocation" x="302.39999999999998" y="-538.83058470764627"/>
+        </view>
+    </objects>
+</document>
