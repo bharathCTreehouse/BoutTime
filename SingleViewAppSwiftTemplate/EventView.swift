@@ -23,7 +23,10 @@ class EventView: UIView {
     @IBOutlet var moveOnlyDownButton: UIButton!
     @IBOutlet var eventTitleLabel: UILabel!
     
-    var eventView: UIView? = nil
+    var eventTitleLabelTrailingConstraint: NSLayoutConstraint? = nil
+    
+    fileprivate var heightOfView: CGFloat = 0.0
+    weak var eventView: UIView? = nil  //Will be loaded from an XIB.
     fileprivate var event: EventDisplay? = nil {
         didSet {
             setupEventView()
@@ -57,8 +60,14 @@ class EventView: UIView {
         eventMovingDirection = direction
     }
     
+    
     func updateEvent(_ event: EventDisplay) {
         self.event = event
+    }
+    
+    
+    func currentHeightOfView() -> CGFloat {
+        return heightOfView
     }
 }
 
@@ -118,10 +127,16 @@ extension EventView {
             
             let selectedStateImage: UIImage? = UIImage(named: "UpFullSelected")
             if let selectedStateImage = selectedStateImage {
-                moveOnlyUpButton.setBackgroundImage(selectedStateImage, for: .selected)
+                moveOnlyUpButton.setBackgroundImage(selectedStateImage, for: .highlighted)
             }
             
             moveOnlyUpButton.sizeToFit()
+            heightOfView = moveOnlyUpButton.frame.size.height
+            
+            eventTitleLabelTrailingConstraint?.isActive = false
+            eventTitleLabelTrailingConstraint = eventTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(moveOnlyUpButton.frame.size.width + 16.0))
+            eventTitleLabelTrailingConstraint?.isActive = true
+            
             
             
         case .onlyDown:
@@ -137,10 +152,18 @@ extension EventView {
             
             let selectedStateImage: UIImage? = UIImage(named: "DownFullSelected")
             if let selectedStateImage = selectedStateImage {
-                moveOnlyDownButton.setBackgroundImage(selectedStateImage, for: .selected)
+                moveOnlyDownButton.setBackgroundImage(selectedStateImage, for: .highlighted)
             }
             
+            
+            
             moveOnlyDownButton.sizeToFit()
+            heightOfView = moveOnlyDownButton.frame.size.height
+            
+            eventTitleLabelTrailingConstraint?.isActive = false
+            eventTitleLabelTrailingConstraint = eventTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(moveOnlyDownButton.frame.size.width + 16.0))
+            eventTitleLabelTrailingConstraint?.isActive = true
+
             
         case .upAndDown:
             moveOnlyUpButton.isHidden = true
@@ -155,7 +178,7 @@ extension EventView {
             
             let selectedStateUpImage: UIImage? = UIImage(named: "UpHalfSelected")
             if let selectedStateUpImage = selectedStateUpImage {
-                moveUpButton.setBackgroundImage(selectedStateUpImage, for: .selected)
+                moveUpButton.setBackgroundImage(selectedStateUpImage, for: .highlighted)
             }
             
             let normalStateDownImage: UIImage? = UIImage(named: "DownHalfNormal")
@@ -165,12 +188,37 @@ extension EventView {
             
             let selectedStateDownImage: UIImage? = UIImage(named: "DownHalfSelected")
             if let selectedStateDownImage = selectedStateDownImage {
-                moveDownButton.setBackgroundImage(selectedStateDownImage, for: .selected)
+                moveDownButton.setBackgroundImage(selectedStateDownImage, for: .highlighted)
             }
             
             moveUpButton.sizeToFit()
             moveDownButton.sizeToFit()
+            heightOfView = moveUpButton.frame.size.height + moveDownButton.frame.size.height
+            
+            eventTitleLabelTrailingConstraint?.isActive = false
+            eventTitleLabelTrailingConstraint = eventTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(moveUpButton.frame.size.width + 16.0))
+            eventTitleLabelTrailingConstraint?.isActive = true
+
         }
+    }
+    
+    
+    func enableDirectionButtons(_ shouldEnable: Bool) {
+        
+        let alphaValue: CGFloat = (shouldEnable == true) ? 1.0 : 0.75
+        
+        moveUpButton.isEnabled = shouldEnable
+        moveUpButton.alpha = alphaValue
+        
+        moveDownButton.isEnabled = shouldEnable
+        moveDownButton.alpha = alphaValue
+        
+        moveOnlyUpButton.isEnabled = shouldEnable
+        moveOnlyUpButton.alpha = alphaValue
+        
+        moveOnlyDownButton.isEnabled = shouldEnable
+        moveOnlyDownButton.alpha = alphaValue
+        
     }
     
 }

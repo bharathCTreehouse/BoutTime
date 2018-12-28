@@ -24,51 +24,50 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHR-8T-hHf">
-                    <rect key="frame" x="322.5" y="20" width="52.5" height="88"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="88" id="VsR-zF-iqy"/>
-                    </constraints>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHR-8T-hHf">
+                    <rect key="frame" x="345" y="20" width="30" height="34"/>
+                    <state key="normal">
+                        <color key="titleColor" red="0.031372549020000001" green="0.16862745100000001" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHT-dL-yZ9">
-                    <rect key="frame" x="345" y="108" width="30" height="88"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="88" id="O6B-JC-Oi2"/>
-                    </constraints>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHT-dL-yZ9">
+                    <rect key="frame" x="345" y="54" width="30" height="34"/>
+                    <state key="normal">
+                        <color key="titleColor" red="0.031372549020000001" green="0.16862745100000001" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txL-LF-bqq">
-                    <rect key="frame" x="345" y="20" width="30" height="176"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="176" id="wUF-GM-zVh"/>
-                    </constraints>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txL-LF-bqq">
+                    <rect key="frame" x="345" y="20" width="30" height="34"/>
+                    <state key="normal">
+                        <color key="titleColor" red="0.031372549020000001" green="0.16862745100000001" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q75-4K-sVd">
-                    <rect key="frame" x="345" y="20" width="30" height="176"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="176" id="o4F-7q-Y1A"/>
-                    </constraints>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q75-4K-sVd">
+                    <rect key="frame" x="345" y="20" width="30" height="34"/>
+                    <state key="normal">
+                        <color key="titleColor" red="0.031372549020000001" green="0.16862745100000001" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="India lift the world cup in 28 years" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gE4-Oj-Qhc">
-                    <rect key="frame" x="8" y="36" width="290.5" height="615"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gE4-Oj-Qhc">
+                    <rect key="frame" x="16" y="8" width="57" height="651"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                     <color key="textColor" red="0.0" green="0.32941176470588235" blue="0.47843137254901957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="Q75-4K-sVd" firstAttribute="trailing" secondItem="QHy-fn-iE5" secondAttribute="trailing" id="0aS-q4-V3Z"/>
                 <constraint firstItem="aHR-8T-hHf" firstAttribute="trailing" secondItem="QHy-fn-iE5" secondAttribute="trailing" id="2y9-cR-Hqj"/>
-                <constraint firstItem="gE4-Oj-Qhc" firstAttribute="leading" secondItem="QHy-fn-iE5" secondAttribute="leading" constant="8" id="3Bi-4K-X44"/>
+                <constraint firstItem="gE4-Oj-Qhc" firstAttribute="leading" secondItem="QHy-fn-iE5" secondAttribute="leading" constant="16" id="3Bi-4K-X44"/>
+                <constraint firstItem="QHy-fn-iE5" firstAttribute="bottom" secondItem="gE4-Oj-Qhc" secondAttribute="bottom" constant="8" id="8BG-Ud-zg5"/>
                 <constraint firstItem="txL-LF-bqq" firstAttribute="top" secondItem="QHy-fn-iE5" secondAttribute="top" id="CJs-Ov-PcJ"/>
+                <constraint firstItem="gE4-Oj-Qhc" firstAttribute="centerY" secondItem="lYz-1A-yl6" secondAttribute="centerY" id="IHF-Vf-EP8"/>
                 <constraint firstItem="txL-LF-bqq" firstAttribute="trailing" secondItem="QHy-fn-iE5" secondAttribute="trailing" id="Igd-1P-qk2"/>
-                <constraint firstAttribute="trailing" secondItem="Q75-4K-sVd" secondAttribute="trailing" id="Opt-73-DHV"/>
                 <constraint firstItem="pHT-dL-yZ9" firstAttribute="trailing" secondItem="QHy-fn-iE5" secondAttribute="trailing" id="V0B-uO-A8y"/>
-                <constraint firstItem="gE4-Oj-Qhc" firstAttribute="top" secondItem="QHy-fn-iE5" secondAttribute="top" constant="16" id="bCm-GJ-Y1V"/>
-                <constraint firstItem="QHy-fn-iE5" firstAttribute="bottom" secondItem="gE4-Oj-Qhc" secondAttribute="bottom" constant="16" id="chN-8f-GmV"/>
                 <constraint firstItem="aHR-8T-hHf" firstAttribute="top" secondItem="QHy-fn-iE5" secondAttribute="top" id="lzl-Ly-d1c"/>
                 <constraint firstItem="pHT-dL-yZ9" firstAttribute="top" secondItem="aHR-8T-hHf" secondAttribute="bottom" id="sBi-mc-vAq"/>
                 <constraint firstItem="Q75-4K-sVd" firstAttribute="top" secondItem="QHy-fn-iE5" secondAttribute="top" id="tUt-Cc-YmN"/>
-                <constraint firstItem="aHR-8T-hHf" firstAttribute="leading" secondItem="gE4-Oj-Qhc" secondAttribute="trailing" constant="24" id="wqT-xX-UAf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="QHy-fn-iE5"/>
             <point key="canvasLocation" x="302.39999999999998" y="-538.83058470764627"/>

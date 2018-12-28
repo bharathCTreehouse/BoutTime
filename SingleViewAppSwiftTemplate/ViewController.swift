@@ -15,13 +15,27 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         //Just to test
-        let firstEvent: Event = Event(title:"India got independence and we were free from the british and we were very happy actually. Godambi burfi dhsjfhdskjhfkjshd  jshdfjhsjdkhfjksdhfkjds jdshfjkhsdjkfhjksdhfjksdhkjfhs jksdhfjkhsdjkfhsjdkhfjksdhfjksdhjkfhsdjkf dsjkhfjksdhfjks 111", yearItOccurred: 1947)
-        let eventView: EventView = EventView(withEvent: firstEvent, positionInGame: 0, eventMovingDirection: .onlyUp)
-        view.addSubview(eventView)
-        eventView.topAnchor.constraint(equalTo: view.topAnchor, constant: 35.0).isActive = true
-        eventView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0).isActive = true
-        eventView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16.0).isActive = true
-        eventView.heightAnchor.constraint(equalToConstant: 176.0).isActive = true
+        let firstEvent: Event = Event(title:"Start of the Korean war", yearItOccurred: 1947)
+        let secondEvent: Event = Event(title:"Start of the Indo-Pak war", yearItOccurred: 1965)
+        let thirdEvent: Event = Event(title:"Start of the Indo-China war", yearItOccurred: 1962)
+        let fourthEvent: Event = Event(title:"Start of the Kargil war", yearItOccurred: 1999)
+
+
+
+        let game: SingleGame = SingleGame(withEventsToArrange: [firstEvent, secondEvent, thirdEvent, fourthEvent])
+        let gameView: SingleGameView = SingleGameView(withSingleGame: game)
+        
+        view.addSubview(gameView)
+        if #available(iOS 11.0, *) {
+            gameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0.0).isActive = true
+        } else {
+            // Fallback on earlier versions
+            gameView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0.0).isActive = true
+        }
+        gameView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0.0).isActive = true
+        gameView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0.0).isActive = true
+        gameView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0).isActive = true
+
         
     }
 
