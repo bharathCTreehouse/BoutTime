@@ -15,13 +15,17 @@ class SingleGameView: UIView {
         didSet {
             createEventViews()
             setupEventView()
-            //setupTimerLabel()
-            //setupCorrectnessIndicatorView()
-            //setupInstructionLabel()
+            setupTimerLabel()
+            setupCorrectnessIndicatorView()
+            setupInstructionLabel()
             hideGameInformationView(true)
         }
     }
     var instructionLabelTopConstraint: NSLayoutConstraint? = nil
+    var timerLabelTopConstraint: NSLayoutConstraint? = nil
+    var correctnessIndicatorImageViewTopConstraint: NSLayoutConstraint? = nil
+
+
     var eventViews: [EventView] = []
     var eventViewConstraints: [NSLayoutConstraint] = []
     
@@ -45,7 +49,7 @@ class SingleGameView: UIView {
     func updateWithGame(_ game: SingleGame) {
         singleGame = game
         singleGame?.userInterfaceUpdateDelegate = self
-        //beginGame()
+        beginGame()
     }
     
     
@@ -116,7 +120,8 @@ extension SingleGameView {
             addSubview(timerLabel!)
             timerLabel!.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
             let eventView: EventView? = eventViews.last
-            timerLabel!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 20.0).isActive = true
+            timerLabelTopConstraint = timerLabel!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 20.0)
+            timerLabelTopConstraint?.isActive = true
             
         }
         
@@ -130,7 +135,8 @@ extension SingleGameView {
             addSubview(correctnessIndicatorView!)
             correctnessIndicatorView!.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
             let eventView: EventView? = eventViews.last
-            correctnessIndicatorView!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 7.0).isActive = true
+            correctnessIndicatorImageViewTopConstraint = correctnessIndicatorView!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 19.0)
+            correctnessIndicatorImageViewTopConstraint?.isActive = true
             
         }
         
@@ -146,7 +152,7 @@ extension SingleGameView {
             instructionLabel!.font = UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightRegular)
             instructionLabel!.textColor = UIColor(red: 0.0, green: 111.0/255.0, blue: 148.0/255.0, alpha: 1.0)
             addSubview(instructionLabel!)
-            instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: timerLabel!.bottomAnchor, constant: 6.0)
+            instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: timerLabel!.bottomAnchor, constant: 9.0)
             instructionLabelTopConstraint?.isActive = true
             instructionLabel!.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         }
@@ -185,7 +191,7 @@ extension SingleGameView: GameStatusUpdateProtocol {
             
             instructionLabel!.isHidden = false
             instructionLabelTopConstraint!.isActive = false
-            instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: timerLabel!.bottomAnchor, constant: 6.0)
+            instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: timerLabel!.bottomAnchor, constant: 9.0)
             instructionLabelTopConstraint!.isActive = true
             instructionLabel!.text = "Shake to complete"
         }
@@ -203,6 +209,13 @@ extension SingleGameView: GameStatusUpdateProtocol {
     func updateViewForGameAnswerStatus(_ answerStatus: GameAnswerStatus) {
         
         timerLabel!.isHidden = true
+        correctnessIndicatorView?.isHidden = false
+        
+        let eventView: EventView? = eventViews.last
+        correctnessIndicatorImageViewTopConstraint?.isActive = false
+        correctnessIndicatorImageViewTopConstraint = correctnessIndicatorView!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 19.0)
+        correctnessIndicatorImageViewTopConstraint?.isActive = true
+        
         var correctnessImage: UIImage? = nil
         if answerStatus == .correct {
             correctnessImage = UIImage(named: "ImageCorrect")
@@ -214,7 +227,7 @@ extension SingleGameView: GameStatusUpdateProtocol {
         
         instructionLabel!.isHidden = false
         instructionLabelTopConstraint!.isActive = false
-        instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: correctnessIndicatorView!.bottomAnchor, constant: 6.0)
+        instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: correctnessIndicatorView!.bottomAnchor, constant: 9.0)
         instructionLabelTopConstraint!.isActive = true
         instructionLabel!.text = "Tap events to learn more"
         
@@ -227,10 +240,14 @@ extension SingleGameView: GameStatusUpdateProtocol {
     
     func swapEventViewPresentIn(_ positionOne: Int, _ positionTwo: Int) {
         
+        //Split this method. It has become too big.
+        
         self.eventViews.swapAt(positionOne, positionTwo)
         self.eventViewConstraints.swapAt(positionOne, positionTwo)
+        var isLastEventViewUpdated: Bool = false
         
         if (positionOne - 1) >= 0 {
+            
             let eventViewForReference: EventView = self.eventViews[positionOne - 1]
             let eventViewToMove: EventView = self.eventViews[positionOne]
             eventViewToMove.eventPosition = positionOne
@@ -247,17 +264,18 @@ extension SingleGameView: GameStatusUpdateProtocol {
             if positionOne == self.eventViews.count - 1 {
                 //Last event view
                 eventViewToMove.updateMovingDirection(.onlyUp)
+                isLastEventViewUpdated = true
             }
             else {
                 eventViewToMove.updateMovingDirection(.upAndDown)
             }
-
+            
         }
         else {
-            //first event
+            //First event
             let eventViewToMove: EventView = self.eventViews[positionOne]
             eventViewToMove.eventPosition = positionOne
-
+            
             var constraintToModify: NSLayoutConstraint = eventViewConstraints[positionOne]
             
             constraintToModify.isActive = false
@@ -267,7 +285,7 @@ extension SingleGameView: GameStatusUpdateProtocol {
             self.eventViewConstraints.remove(at: positionOne)
             self.eventViewConstraints.insert(constraintToModify, at: positionOne)
             eventViewToMove.updateMovingDirection(.onlyDown)
-
+            
         }
         
         
@@ -289,6 +307,8 @@ extension SingleGameView: GameStatusUpdateProtocol {
             if positionTwo == self.eventViews.count - 1 {
                 //Last event view
                 eventViewToMove.updateMovingDirection(.onlyUp)
+                isLastEventViewUpdated = true
+                
             }
             else {
                 eventViewToMove.updateMovingDirection(.upAndDown)
@@ -333,15 +353,20 @@ extension SingleGameView: GameStatusUpdateProtocol {
             
         }
         
+        
+        if isLastEventViewUpdated == true {
+            
+            //Update timer label constraint.
+            timerLabelTopConstraint?.isActive = false
+            let eventView: EventView? = eventViews.last
+            timerLabelTopConstraint = timerLabel!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 20.0)
+            timerLabelTopConstraint!.isActive = true
+        }
+        
+        
         UIView.animate(withDuration: 0.5, animations: { [unowned self]() -> Void in
             self.layoutIfNeeded()
         })
-        
-        
-        //setupTimerLabel()
-        //updateViewForGameStatus(.inProgress)
-
-
     }
-
+    
 }

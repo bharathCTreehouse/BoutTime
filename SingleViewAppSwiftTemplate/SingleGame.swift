@@ -45,6 +45,7 @@ class SingleGame {
     var events: [EventDisplay] = []  //User order.
     weak var userInterfaceUpdateDelegate: GameStatusUpdateProtocol? = nil
     weak var validityCheckerDelegate: GameValidatorProtocol? = nil
+    var gameTimer: EventTimer? = nil
     
     var currentGameStatus: GameStatus = .unknown {
         didSet {
@@ -110,9 +111,20 @@ class SingleGame {
     
     
     func begin() {
-        //Initiate the timer.
+        
         //Change the current game status.
         updateGameStatus(.inProgress)
+        
+        //Initiate the timer.
+        if let _ = gameTimer {
+            //Timer already setup. Just update it with relevant values.
+            gameTimer?.update(withInitialValue: 10, direction: .reverse, delegate: self)
+        }
+        else {
+            gameTimer = EventTimer(withInitialValue: 10, direction: .reverse, delegate: self)
+        }
+        gameTimer?.initiateTimer()
+
     }
     
     
@@ -124,4 +136,21 @@ class SingleGame {
         userInterfaceUpdateDelegate?.swapEventViewPresentIn(positionOne, positionTwo)
     }
     
+}
+
+
+
+extension SingleGame: TimerProtocol {
+    
+    func updateWithCurrentTimerValue(_ value: Int) {
+        
+        let timeLeft: String = "0:\(value)"
+        userInterfaceUpdateDelegate?.updateViewWithTimeRemainingString(timeLeft)
+        
+        if value == 0 {
+            //Time out.
+            updateGameStatus(.completed)
+        }
+        
+    }
 }

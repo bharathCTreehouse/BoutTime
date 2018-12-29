@@ -25,6 +25,7 @@ class ViewController: UIViewController {
 
 
         let game: SingleGame = SingleGame(withEventsToArrange: [firstEvent, secondEvent, thirdEvent, fourthEvent])
+        game.validityCheckerDelegate = self
         currentGameView = SingleGameView(withSingleGame: game)
         
         view.addSubview(currentGameView!)
@@ -63,8 +64,21 @@ class ViewController: UIViewController {
         }
         
     }
+    
+}
 
-   
 
+
+extension ViewController: GameValidatorProtocol {
+    
+    func answerStatusOfUserSelectedOrder(_ userSelectedOrder: [EventDisplay]) -> GameAnswerStatus {
+        
+        //Validate user selected answer.
+        //Let us send correct for now.
+        return .correct
+        
+    }
+    
+    
 }
 
