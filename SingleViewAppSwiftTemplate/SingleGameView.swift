@@ -15,9 +15,9 @@ class SingleGameView: UIView {
         didSet {
             createEventViews()
             setupEventView()
-            setupTimerLabel()
-            setupCorrectnessIndicatorView()
-            setupInstructionLabel()
+            //setupTimerLabel()
+            //setupCorrectnessIndicatorView()
+            //setupInstructionLabel()
             hideGameInformationView(true)
         }
     }
@@ -45,7 +45,7 @@ class SingleGameView: UIView {
     func updateWithGame(_ game: SingleGame) {
         singleGame = game
         singleGame?.userInterfaceUpdateDelegate = self
-        beginGame()
+        //beginGame()
     }
     
     
@@ -107,6 +107,7 @@ extension SingleGameView {
     func setupTimerLabel() {
         
         if timerLabel == nil  {
+            timerLabel?.removeFromSuperview()
             timerLabel = UILabel()
             timerLabel!.numberOfLines = 0
             timerLabel!.translatesAutoresizingMaskIntoConstraints = false
@@ -222,4 +223,125 @@ extension SingleGameView: GameStatusUpdateProtocol {
     func updateViewWithTimeRemainingString(_ timeRemainingString: String) {
         timerLabel?.text = timeRemainingString
     }
+    
+    
+    func swapEventViewPresentIn(_ positionOne: Int, _ positionTwo: Int) {
+        
+        self.eventViews.swapAt(positionOne, positionTwo)
+        self.eventViewConstraints.swapAt(positionOne, positionTwo)
+        
+        if (positionOne - 1) >= 0 {
+            let eventViewForReference: EventView = self.eventViews[positionOne - 1]
+            let eventViewToMove: EventView = self.eventViews[positionOne]
+            eventViewToMove.eventPosition = positionOne
+            
+            var constraintToModify: NSLayoutConstraint = eventViewConstraints[positionOne]
+            
+            constraintToModify.isActive = false
+            constraintToModify = eventViewToMove.topAnchor.constraint(equalTo: eventViewForReference.bottomAnchor, constant: 9.0)
+            constraintToModify.isActive = true
+            
+            self.eventViewConstraints.remove(at: positionOne)
+            self.eventViewConstraints.insert(constraintToModify, at: positionOne)
+            
+            if positionOne == self.eventViews.count - 1 {
+                //Last event view
+                eventViewToMove.updateMovingDirection(.onlyUp)
+            }
+            else {
+                eventViewToMove.updateMovingDirection(.upAndDown)
+            }
+
+        }
+        else {
+            //first event
+            let eventViewToMove: EventView = self.eventViews[positionOne]
+            eventViewToMove.eventPosition = positionOne
+
+            var constraintToModify: NSLayoutConstraint = eventViewConstraints[positionOne]
+            
+            constraintToModify.isActive = false
+            constraintToModify = eventViewToMove.topAnchor.constraint(equalTo: topAnchor, constant: 18.0)
+            constraintToModify.isActive = true
+            
+            self.eventViewConstraints.remove(at: positionOne)
+            self.eventViewConstraints.insert(constraintToModify, at: positionOne)
+            eventViewToMove.updateMovingDirection(.onlyDown)
+
+        }
+        
+        
+        if (positionTwo - 1) >= 0 {
+            
+            let eventViewForReference: EventView = self.eventViews[positionTwo - 1]
+            let eventViewToMove: EventView = self.eventViews[positionTwo]
+            eventViewToMove.eventPosition = positionTwo
+            
+            var constraintToModify: NSLayoutConstraint =  eventViewConstraints[positionTwo]
+            
+            constraintToModify.isActive = false
+            constraintToModify = eventViewToMove.topAnchor.constraint(equalTo: eventViewForReference.bottomAnchor, constant: 9.0)
+            constraintToModify.isActive = true
+            
+            self.eventViewConstraints.remove(at: positionTwo)
+            self.eventViewConstraints.insert(constraintToModify, at: positionTwo)
+            
+            if positionTwo == self.eventViews.count - 1 {
+                //Last event view
+                eventViewToMove.updateMovingDirection(.onlyUp)
+            }
+            else {
+                eventViewToMove.updateMovingDirection(.upAndDown)
+            }
+        }
+        else {
+            //first event
+            let eventViewToMove: EventView = self.eventViews[positionTwo]
+            eventViewToMove.eventPosition = positionTwo
+            var constraintToModify: NSLayoutConstraint =  eventViewConstraints[positionTwo]
+            
+            constraintToModify.isActive = false
+            constraintToModify = eventViewToMove.topAnchor.constraint(equalTo: topAnchor, constant: 18.0)
+            constraintToModify.isActive = true
+            
+            self.eventViewConstraints.remove(at: positionTwo)
+            self.eventViewConstraints.insert(constraintToModify, at: positionTwo)
+            eventViewToMove.updateMovingDirection(.onlyDown)
+            
+        }
+        
+        //We might have to modify top constraint of one view below.
+        var positionToModify: Int = positionTwo
+        if positionOne > positionTwo {
+            positionToModify = positionOne
+        }
+        
+        positionToModify = positionToModify + 1
+        if positionToModify < self.eventViews.count {
+            
+            let eventViewForReference: EventView = self.eventViews[positionToModify - 1]
+            let eventViewToMove: EventView = self.eventViews[positionToModify]
+            
+            var constraintToModify: NSLayoutConstraint =  eventViewConstraints[positionToModify]
+            
+            constraintToModify.isActive = false
+            constraintToModify = eventViewToMove.topAnchor.constraint(equalTo: eventViewForReference.bottomAnchor, constant: 9.0)
+            constraintToModify.isActive = true
+            
+            self.eventViewConstraints.remove(at: positionToModify)
+            self.eventViewConstraints.insert(constraintToModify, at: positionToModify)
+            
+        }
+        
+        UIView.animate(withDuration: 0.5, animations: { [unowned self]() -> Void in
+            self.layoutIfNeeded()
+        })
+        
+        
+        //setupTimerLabel()
+        //updateViewForGameStatus(.inProgress)
+
+
+    }
+
 }

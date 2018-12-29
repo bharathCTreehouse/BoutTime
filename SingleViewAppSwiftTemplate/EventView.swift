@@ -26,13 +26,16 @@ class EventView: UIView {
     var eventTitleLabelTrailingConstraint: NSLayoutConstraint? = nil
     
     fileprivate var heightOfView: CGFloat = 0.0
+    
     weak var eventView: UIView? = nil  //Will be loaded from an XIB.
+    
     fileprivate var event: EventDisplay? = nil {
         didSet {
             setupEventView()
         }
     }
-    var eventPosition: Int? = nil
+    var eventPosition: Int = 0
+    
     var eventMovingDirection: EventMovingDirection? = nil {
         
         //Based on the direction, update the button images.
@@ -76,11 +79,24 @@ extension EventView {
     
     @IBAction func moveEventUpButtonTapped(_ sender: UIButton) {
         
+        let notificationCentre: NotificationCenter = NotificationCenter.default
+        let userInfoDictionary: [String: Any] = ["position":self.eventPosition, "direction": EventMovingDirection.onlyUp]
+        notificationCentre.post(name: NSNotification.Name(rawValue: "BoutTimeDirectionButtonTapped"), object: nil, userInfo: userInfoDictionary)
+        
+        //self.eventPosition = self.eventPosition - 1
+        
         
     }
     
     
     @IBAction func moveEventDownButtonTapped(_ sender: UIButton) {
+        
+        let notificationCentre: NotificationCenter = NotificationCenter.default
+        let userInfoDictionary: [String: Any] = ["position":self.eventPosition, "direction": EventMovingDirection.onlyDown]
+        notificationCentre.post(name: NSNotification.Name(rawValue: "BoutTimeDirectionButtonTapped"), object: nil, userInfo: userInfoDictionary)
+        
+        //self.eventPosition = self.eventPosition + 1
+
         
     }
     

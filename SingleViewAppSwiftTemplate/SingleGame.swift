@@ -29,6 +29,7 @@ protocol GameStatusUpdateProtocol: class {
     func updateViewForGameStatus(_ gameStatus: GameStatus)
     func updateViewForGameAnswerStatus(_ answerStatus: GameAnswerStatus)
     func updateViewWithTimeRemainingString(_ timeRemainingString: String)
+    func swapEventViewPresentIn(_ positionOne: Int, _ positionTwo: Int)
 }
 
 
@@ -112,6 +113,15 @@ class SingleGame {
         //Initiate the timer.
         //Change the current game status.
         updateGameStatus(.inProgress)
+    }
+    
+    
+    func reorderEventsAt(firstPosition positionOne: Int, secondPosition positionTwo: Int) {
+        
+        self.events.swapAt(positionOne, positionTwo)
+        
+        //Update SingleGameView
+        userInterfaceUpdateDelegate?.swapEventViewPresentIn(positionOne, positionTwo)
     }
     
 }
