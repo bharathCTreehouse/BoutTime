@@ -111,17 +111,17 @@ extension SingleGameView {
     func setupTimerLabel() {
         
         if timerLabel == nil  {
-            timerLabel?.removeFromSuperview()
+            
             timerLabel = UILabel()
             timerLabel!.numberOfLines = 0
             timerLabel!.translatesAutoresizingMaskIntoConstraints = false
             timerLabel!.textColor = UIColor.white
-            timerLabel?.font = UIFont.systemFont(ofSize: 40.0, weight: UIFontWeightRegular)
+            timerLabel!.font = UIFont.systemFont(ofSize: 40.0, weight: UIFontWeightRegular)
             addSubview(timerLabel!)
             timerLabel!.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
             let eventView: EventView? = eventViews.last
             timerLabelTopConstraint = timerLabel!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 20.0)
-            timerLabelTopConstraint?.isActive = true
+            timerLabelTopConstraint!.isActive = true
             
         }
         
@@ -130,13 +130,14 @@ extension SingleGameView {
     func setupCorrectnessIndicatorView() {
         
         if correctnessIndicatorView == nil {
+            
             correctnessIndicatorView = UIImageView(image: nil)
             correctnessIndicatorView!.translatesAutoresizingMaskIntoConstraints = false
             addSubview(correctnessIndicatorView!)
             correctnessIndicatorView!.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
             let eventView: EventView? = eventViews.last
             correctnessIndicatorImageViewTopConstraint = correctnessIndicatorView!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 19.0)
-            correctnessIndicatorImageViewTopConstraint?.isActive = true
+            correctnessIndicatorImageViewTopConstraint!.isActive = true
             
         }
         
@@ -145,7 +146,7 @@ extension SingleGameView {
     func setupInstructionLabel() {
         
         if instructionLabel == nil {
-            instructionLabelTopConstraint?.isActive = false
+            
             instructionLabel = UILabel()
             instructionLabel!.numberOfLines = 0
             instructionLabel!.translatesAutoresizingMaskIntoConstraints = false
@@ -153,7 +154,7 @@ extension SingleGameView {
             instructionLabel!.textColor = UIColor(red: 0.0, green: 111.0/255.0, blue: 148.0/255.0, alpha: 1.0)
             addSubview(instructionLabel!)
             instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: timerLabel!.bottomAnchor, constant: 9.0)
-            instructionLabelTopConstraint?.isActive = true
+            instructionLabelTopConstraint!.isActive = true
             instructionLabel!.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         }
         
@@ -187,8 +188,6 @@ extension SingleGameView: GameStatusUpdateProtocol {
         if gameStatus == .inProgress {
             
             timerLabel!.isHidden = false
-            updateViewWithTimeRemainingString("0:60")
-            
             instructionLabel!.isHidden = false
             instructionLabelTopConstraint!.isActive = false
             instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: timerLabel!.bottomAnchor, constant: 9.0)
@@ -209,12 +208,12 @@ extension SingleGameView: GameStatusUpdateProtocol {
     func updateViewForGameAnswerStatus(_ answerStatus: GameAnswerStatus) {
         
         timerLabel!.isHidden = true
-        correctnessIndicatorView?.isHidden = false
+        correctnessIndicatorView!.isHidden = false
         
         let eventView: EventView? = eventViews.last
-        correctnessIndicatorImageViewTopConstraint?.isActive = false
+        correctnessIndicatorImageViewTopConstraint!.isActive = false
         correctnessIndicatorImageViewTopConstraint = correctnessIndicatorView!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 19.0)
-        correctnessIndicatorImageViewTopConstraint?.isActive = true
+        correctnessIndicatorImageViewTopConstraint!.isActive = true
         
         var correctnessImage: UIImage? = nil
         if answerStatus == .correct {
@@ -223,7 +222,8 @@ extension SingleGameView: GameStatusUpdateProtocol {
         else if answerStatus == .incorrect {
             correctnessImage = UIImage(named: "ImageIncorrect")
         }
-        correctnessIndicatorView?.image = correctnessImage
+        correctnessIndicatorView!.image = correctnessImage
+        correctnessIndicatorView!.sizeToFit()
         
         instructionLabel!.isHidden = false
         instructionLabelTopConstraint!.isActive = false
@@ -232,6 +232,7 @@ extension SingleGameView: GameStatusUpdateProtocol {
         instructionLabel!.text = "Tap events to learn more"
         
     }
+    
     
     func updateViewWithTimeRemainingString(_ timeRemainingString: String) {
         timerLabel?.text = timeRemainingString

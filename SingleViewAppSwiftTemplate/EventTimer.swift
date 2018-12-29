@@ -44,6 +44,7 @@ class EventTimer {
     func initiateTimer() {
         
         invalidateTimer()
+        delegate?.updateWithCurrentTimerValue(timerValue)
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerActionTrigger(_:)), userInfo: nil, repeats: true)
     }
     

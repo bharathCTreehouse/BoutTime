@@ -118,10 +118,10 @@ class SingleGame {
         //Initiate the timer.
         if let _ = gameTimer {
             //Timer already setup. Just update it with relevant values.
-            gameTimer?.update(withInitialValue: 10, direction: .reverse, delegate: self)
+            gameTimer?.update(withInitialValue: 60, direction: .reverse, delegate: self)
         }
         else {
-            gameTimer = EventTimer(withInitialValue: 10, direction: .reverse, delegate: self)
+            gameTimer = EventTimer(withInitialValue: 60, direction: .reverse, delegate: self)
         }
         gameTimer?.initiateTimer()
 
