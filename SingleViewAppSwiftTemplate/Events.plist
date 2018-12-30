@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>Samudragupta conquered the whole of North India and much of the Deccan</string>
+		<key>yearItOccurred</key>
+		<integer>360</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Rule of Harshavardhana</string>
+		<key>yearItOccurred</key>
+		<integer>606</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Mohammad Bin Qasim invaded India and conquered Sindh which became the province of Omayyad Khilafat</string>
+		<key>yearItOccurred</key>
+		<integer>712</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Sultan Mahmud Ghazni invaded India and plundered and destroyed the Somnath Temple</string>
+		<key>yearItOccurred</key>
+		<integer>1025</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>First battle of Tarain in which Prithviraj Chauhan defeated Mohammad Ghori</string>
+		<key>yearItOccurred</key>
+		<integer>1191</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Qutubbin Aibak founded IIbari/Slave dynasty</string>
+		<key>yearItOccurred</key>
+		<integer>1206</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Quilon, the 1st Indian Diocese was put up by Pope John XXII &amp; Jordanus was appointed the 1st Bishop</string>
+		<key>yearItOccurred</key>
+		<integer>1329</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Vasco da Gama departs for an India trip</string>
+		<key>yearItOccurred</key>
+		<integer>1497</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Vasco da Gama arrived at Calcutta, India</string>
+		<key>yearItOccurred</key>
+		<real>1498</real>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Vasco da Gama navigated from Lisbon, Portugal on his 2nd voyage to India</string>
+		<key>yearItOccurred</key>
+		<integer>1502</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>The Battle of Diu takes place in Diu between Turkey and Portugal</string>
+		<key>yearItOccurred</key>
+		<real>1509</real>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>The origin of Fasli Era</string>
+		<key>yearItOccurred</key>
+		<integer>1556</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Battle at Talikota</string>
+		<key>yearItOccurred</key>
+		<integer>1565</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Mughal Emperor Akbar defeated Bengali army at Battle of Tukaroi</string>
+		<key>yearItOccurred</key>
+		<integer>1575</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>The charter of British East India Company</string>
+		<key>yearItOccurred</key>
+		<integer>1600</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>United Dutch East Indian Company (VOC) formed</string>
+		<key>yearItOccurred</key>
+		<integer>1602</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>First English convoy lands at Surat, India</string>
+		<key>yearItOccurred</key>
+		<integer>1608</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Madras was founded by the British East India Company on a sliver of land bought from local Nayak rulers</string>
+		<key>yearItOccurred</key>
+		<integer>1639</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>England took control of Bombay</string>
+		<key>yearItOccurred</key>
+		<integer>1668</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Battle of Karnal took place. Iranian ruler Nadir Shah defeated Mughal emperor Muhammad Shah</string>
+		<key>yearItOccurred</key>
+		<integer>1739</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>French army surrendered to the English in Trichinopoly</string>
+		<key>yearItOccurred</key>
+		<integer>1752</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>British troops occupied Calcutta India</string>
+		<key>yearItOccurred</key>
+		<integer>1757</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Charles Cornwallis was appointed governor-general of India</string>
+		<key>yearItOccurred</key>
+		<integer>1786</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string> England signed treaty with Nizam of Hyderabad</string>
+		<key>yearItOccurred</key>
+		<integer>1798</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>1st passenger rail opened in India. It opened from Bombay to Thane</string>
+		<key>yearItOccurred</key>
+		<integer>1853</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Allahabad High Court was established</string>
+		<key>yearItOccurred</key>
+		<integer>1866</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Dadabhai Naoroji was elected as 1st Indian Member of Parliament in Britain</string>
+		<key>yearItOccurred</key>
+		<integer>1892</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Partition of Bengal took place</string>
+		<key>yearItOccurred</key>
+		<integer>1905</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Communist Party of India was founded</string>
+		<key>yearItOccurred</key>
+		<integer>1925</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>First non-stop England to India flight takes-off</string>
+		<key>yearItOccurred</key>
+		<integer>1929</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Establishment of Indian Air Force</string>
+		<key>yearItOccurred</key>
+		<integer>1932</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Orissa constituted as the province of British India</string>
+		<key>yearItOccurred</key>
+		<integer>1936</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Netaji Subhash Chandra Bose formed the All India Forward Bloc</string>
+		<key>yearItOccurred</key>
+		<integer>1939</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>India became independent from British Rule</string>
+		<key>yearItOccurred</key>
+		<integer>1947</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Lord Mountbatten resigned as the Governor General of India</string>
+		<key>yearItOccurred</key>
+		<real>1948</real>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>India becomes a republic</string>
+		<key>yearItOccurred</key>
+		<integer>1950</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Delhi became a territory of Indian union</string>
+		<key>yearItOccurred</key>
+		<integer>1956</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Battle of Garibpur: Indian troops defeated Pakistan army</string>
+		<key>yearItOccurred</key>
+		<integer>1971</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>India became 6th nation to explode an atomic bomb</string>
+		<key>yearItOccurred</key>
+		<real>1974</real>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string> India launched 1st satellite with help of USSR</string>
+		<key>yearItOccurred</key>
+		<real>1975</real>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Rohini 1, first Indian satellite, launched into orbit</string>
+		<key>yearItOccurred</key>
+		<integer>1980</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>India launched its 1st unmanned lunar mission, Chandrayaan -1</string>
+		<key>yearItOccurred</key>
+		<integer>2008</integer>
+		<key>informationLink</key>
+		<string>www</string>
+	</dict>
+</array>
+</plist>

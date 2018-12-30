@@ -18,7 +18,6 @@ class SingleGameView: UIView {
             setupTimerLabel()
             setupCorrectnessIndicatorView()
             setupInstructionLabel()
-            hideGameInformationView(true)
         }
     }
     var instructionLabelTopConstraint: NSLayoutConstraint? = nil
@@ -48,8 +47,6 @@ class SingleGameView: UIView {
     
     func updateWithGame(_ game: SingleGame) {
         singleGame = game
-        singleGame?.userInterfaceUpdateDelegate = self
-        beginGame()
     }
     
     
@@ -138,6 +135,7 @@ extension SingleGameView {
             let eventView: EventView? = eventViews.last
             correctnessIndicatorImageViewTopConstraint = correctnessIndicatorView!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 19.0)
             correctnessIndicatorImageViewTopConstraint!.isActive = true
+            correctnessIndicatorView?.isHidden = true
             
         }
         
@@ -171,65 +169,62 @@ extension SingleGameView {
 }
 
 
-
 extension SingleGameView {
     
-    func beginGame() {
-        singleGame?.begin()
-    }
-}
-
-
-extension SingleGameView: GameStatusUpdateProtocol {
-    
-    
-    func updateViewForGameStatus(_ gameStatus: GameStatus) {
+    func updateViewForGameStatus() {
         
-        if gameStatus == .inProgress {
+        if let gameStatus = singleGame?.currentGameStatus {
             
-            timerLabel!.isHidden = false
-            instructionLabel!.isHidden = false
-            instructionLabelTopConstraint!.isActive = false
-            instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: timerLabel!.bottomAnchor, constant: 9.0)
-            instructionLabelTopConstraint!.isActive = true
-            instructionLabel!.text = "Shake to complete"
-        }
-        else if gameStatus == .completed {
-            //Disable event view buttons so that the user can't reorder once the game is over.
-            for eventView in eventViews {
-                eventView.enableDirectionButtons(false)
+            if gameStatus == .inProgress {
+                
+                timerLabel!.isHidden = false
+                instructionLabel!.isHidden = false
+                instructionLabelTopConstraint!.isActive = false
+                instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: timerLabel!.bottomAnchor, constant: 9.0)
+                instructionLabelTopConstraint!.isActive = true
+                instructionLabel!.text = "Shake to complete"
+            }
+            else if gameStatus == .completed {
+                //Disable event view buttons so that the user can't reorder once the game is over.
+                for eventView in eventViews {
+                    eventView.enableDirectionButtons(false)
+                }
+            }
+            else {
+                hideGameInformationView(true)
             }
         }
-        else {
-            hideGameInformationView(true)
-        }
     }
     
-    func updateViewForGameAnswerStatus(_ answerStatus: GameAnswerStatus) {
+    
+    func updateViewForGameAnswerStatus() {
         
-        timerLabel!.isHidden = true
-        correctnessIndicatorView!.isHidden = false
-        
-        let eventView: EventView? = eventViews.last
-        correctnessIndicatorImageViewTopConstraint!.isActive = false
-        correctnessIndicatorImageViewTopConstraint = correctnessIndicatorView!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 19.0)
-        correctnessIndicatorImageViewTopConstraint!.isActive = true
-        
-        var correctnessImage: UIImage? = nil
-        if answerStatus == .correct {
-            correctnessImage = UIImage(named: "ImageCorrect")
+        if let answerStatus = singleGame?.currentGameAnswerStatus {
+            
+            timerLabel!.isHidden = true
+            correctnessIndicatorView!.isHidden = false
+            
+            let eventView: EventView? = eventViews.last
+            correctnessIndicatorImageViewTopConstraint!.isActive = false
+            correctnessIndicatorImageViewTopConstraint = correctnessIndicatorView!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 19.0)
+            correctnessIndicatorImageViewTopConstraint!.isActive = true
+            
+            var correctnessImage: UIImage? = nil
+            if answerStatus == .correct {
+                correctnessImage = UIImage(named: "ImageCorrect")
+            }
+            else if answerStatus == .incorrect {
+                correctnessImage = UIImage(named: "ImageIncorrect")
+            }
+            correctnessIndicatorView!.image = correctnessImage
+            correctnessIndicatorView!.sizeToFit()
+            
+            instructionLabel!.isHidden = false
+            instructionLabelTopConstraint!.isActive = false
+            instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: correctnessIndicatorView!.bottomAnchor, constant: 9.0)
+            instructionLabelTopConstraint!.isActive = true
+            instructionLabel!.text = "Tap events to learn more"
         }
-        else if answerStatus == .incorrect {
-            correctnessImage = UIImage(named: "ImageIncorrect")
-        }
-        correctnessIndicatorView!.image = correctnessImage
-        correctnessIndicatorView!.sizeToFit()
-        
-        instructionLabel!.isHidden = false
-        instructionLabelTopConstraint!.isActive = false
-        instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: correctnessIndicatorView!.bottomAnchor, constant: 9.0)
-        instructionLabelTopConstraint!.isActive = true
-        instructionLabel!.text = "Tap events to learn more"
         
     }
     

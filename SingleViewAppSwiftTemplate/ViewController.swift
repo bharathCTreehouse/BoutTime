@@ -11,22 +11,21 @@ import UIKit
 class ViewController: UIViewController {
     
     var currentGameView: SingleGameView? = nil
+    var gameController: GameController? = nil
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        //Just to test
-        let firstEvent: Event = Event(title:"Start of the Korean war", yearItOccurred: 1947)
-        let secondEvent: Event = Event(title:"Start of the Indo-Pak war", yearItOccurred: 1965)
-        let thirdEvent: Event = Event(title:"Start of the Indo-China war", yearItOccurred: 1962)
-        let fourthEvent: Event = Event(title:"Start of the Kargil war", yearItOccurred: 1999)
-
-
-
-        let game: SingleGame = SingleGame(withEventsToArrange: [firstEvent, secondEvent, thirdEvent, fourthEvent])
-        game.validityCheckerDelegate = self
-        currentGameView = SingleGameView(withSingleGame: game)
+        super.viewDidLoad()
+        
+        gameController = GameController(withDelegate: self)
+        let game: SingleGame? = gameController?.gameFromStore()
+        
+        guard let newGame = game else {
+            //Game controller unable to create a new game. So just return.
+            return
+        }
+        
+        currentGameView = SingleGameView(withSingleGame: newGame)
         
         view.addSubview(currentGameView!)
         
@@ -41,44 +40,48 @@ class ViewController: UIViewController {
         currentGameView!.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(eventDirectionButtonTapped(_:)), name: NSNotification.Name(rawValue: "BoutTimeDirectionButtonTapped"), object: nil)
-
+        
+        
+        //Once all the UI is setup, ask the game controller to begin the current game.
+        gameController?.beginCurrentGame()
         
     }
+}
+
+
+extension ViewController: GameUpdateProtocol {
     
+    func updateWithGameStatus(_ gameStatus: GameStatus) {
+        currentGameView?.updateViewForGameStatus()
+    }
+    
+    func updateWithGameAnswerStatus(_ answerStatus: GameAnswerStatus) {
+        currentGameView?.updateViewForGameAnswerStatus()
+    }
+    
+    func updateWithTimeRemaining(_ timeRemaining: Int) {
+        let timeRemainingString: String = "0:\(timeRemaining)"
+        currentGameView?.updateViewWithTimeRemainingString(timeRemainingString)
+    }
+    
+    func swapEventViewPresentIn(_ positionOne: Int, _ positionTwo: Int) {
+        currentGameView?.swapEventViewPresentIn(positionOne, positionTwo)
+    }
+
+}
+
+
+//Reordering.
+extension ViewController {
     
     func eventDirectionButtonTapped(_ sender: Notification) {
         
         let direction: EventMovingDirection = (sender.userInfo!["direction"]) as! EventMovingDirection
         let position: Int = (sender.userInfo!["position"]) as! Int
         
-        var updatedPosition = position
-        if direction == .onlyUp {
-            updatedPosition = position - 1
-            self.currentGameView?.singleGame?.reorderEventsAt(firstPosition: updatedPosition, secondPosition: position)
-
-        }
-        else if direction == .onlyDown {
-            updatedPosition = position + 1
-            self.currentGameView?.singleGame?.reorderEventsAt(firstPosition: position, secondPosition: updatedPosition)
-
-        }
+        //Tell the game controller to update the singleGame model with the new order of events.
+        gameController?.moveEventPresent(inPosition: position, direction: direction)
         
     }
-    
-}
-
-
-
-extension ViewController: GameValidatorProtocol {
-    
-    func answerStatusOfUserSelectedOrder(_ userSelectedOrder: [EventDisplay]) -> GameAnswerStatus {
-        
-        //Validate user selected answer.
-        //Let us send correct for now.
-        return .correct
-        
-    }
-    
-    
 }
 

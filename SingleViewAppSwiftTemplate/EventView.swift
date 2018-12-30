@@ -82,10 +82,6 @@ extension EventView {
         let notificationCentre: NotificationCenter = NotificationCenter.default
         let userInfoDictionary: [String: Any] = ["position":self.eventPosition, "direction": EventMovingDirection.onlyUp]
         notificationCentre.post(name: NSNotification.Name(rawValue: "BoutTimeDirectionButtonTapped"), object: nil, userInfo: userInfoDictionary)
-        
-        //self.eventPosition = self.eventPosition - 1
-        
-        
     }
     
     
@@ -94,10 +90,6 @@ extension EventView {
         let notificationCentre: NotificationCenter = NotificationCenter.default
         let userInfoDictionary: [String: Any] = ["position":self.eventPosition, "direction": EventMovingDirection.onlyDown]
         notificationCentre.post(name: NSNotification.Name(rawValue: "BoutTimeDirectionButtonTapped"), object: nil, userInfo: userInfoDictionary)
-        
-        //self.eventPosition = self.eventPosition + 1
-
-        
     }
     
 }

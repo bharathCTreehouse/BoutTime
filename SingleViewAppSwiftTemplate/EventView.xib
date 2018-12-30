@@ -60,7 +60,7 @@
                         <action selector="moveEventDownButtonTapped:" destination="-1" eventType="touchUpInside" id="Pbm-Bs-Ro1"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gE4-Oj-Qhc">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.45000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="gE4-Oj-Qhc">
                     <rect key="frame" x="16" y="8" width="57" height="651"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                     <color key="textColor" red="0.0" green="0.32941176470588235" blue="0.47843137254901957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

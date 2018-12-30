@@ -11,18 +11,53 @@ import Foundation
 
 protocol EventDisplay {
     var eventTitle: String { get }
+    var eventInformationWebLink: String? { get }
+    var year: Int { get }
 }
 
 struct Event {
     let title: String
     let yearItOccurred: Int
+    let informationLink: String?
 }
 
 
 extension Event: EventDisplay {
     
+    var year: Int {
+        return yearItOccurred
+    }
+    
+    
     var eventTitle : String {
         return title
+    }
+    
+    var eventInformationWebLink: String? {
+        return informationLink
+    }
+    
+    
+//    public static func == (lhs: Event, rhs: Event) -> Bool {
+//
+//        return lhs.title == rhs.title && lhs.yearItOccurred == rhs.yearItOccurred
+//    }
+
+}
+
+
+extension Event {
+    
+    init?(withDictionary dictionary: [String: Any]) {
+        
+        guard let titleInDictionary = dictionary["title"] as? String, let year = dictionary["yearItOccurred"] as? Int else {
+            
+            //Without the title and the year, no point creating an event.
+            return nil
+        }
+        title = titleInDictionary
+        yearItOccurred = year
+        informationLink = dictionary["informationLink"] as? String
     }
 }
 
