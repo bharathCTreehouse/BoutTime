@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+protocol SingleGameViewProtocol: class {
+    func loadNextGame()
+}
+
+
 class SingleGameView: UIView {
     
     var singleGame: SingleGame? = nil {
@@ -22,22 +27,25 @@ class SingleGameView: UIView {
     }
     var instructionLabelTopConstraint: NSLayoutConstraint? = nil
     var timerLabelTopConstraint: NSLayoutConstraint? = nil
-    var correctnessIndicatorImageViewTopConstraint: NSLayoutConstraint? = nil
+    var nextGameButtonTopConstraint: NSLayoutConstraint? = nil
 
 
     var eventViews: [EventView] = []
     var eventViewConstraints: [NSLayoutConstraint] = []
     
     var timerLabel: UILabel? = nil
-    var correctnessIndicatorView: UIImageView? = nil
+    var nextGameButton: UIButton? = nil
     var instructionLabel: UILabel? = nil
+    weak var delegate: SingleGameViewProtocol? = nil
 
 
     
-    init(withSingleGame game: SingleGame) {
+    init(withSingleGame game: SingleGame, singleGameViewDelegate: SingleGameViewProtocol?) {
+        
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         updateWithGame(game)
+        delegate = singleGameViewDelegate
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,6 +54,17 @@ class SingleGameView: UIView {
     
     
     func updateWithGame(_ game: SingleGame) {
+        for view in subviews {
+            view.removeFromSuperview()
+        }
+        timerLabel = nil
+        nextGameButton = nil
+        instructionLabel = nil
+        nextGameButtonTopConstraint?.isActive = false
+        nextGameButtonTopConstraint = nil
+        instructionLabelTopConstraint?.isActive = false
+        instructionLabelTopConstraint = nil
+        
         singleGame = game
     }
     
@@ -77,6 +96,8 @@ class SingleGameView: UIView {
 extension SingleGameView {
     
     func setupEventView() {
+        
+        eventViewConstraints.removeAll()
         
         for (tracker, eventView) in eventViews.enumerated() {
             
@@ -121,24 +142,27 @@ extension SingleGameView {
             timerLabelTopConstraint!.isActive = true
             
         }
-        
     }
     
     func setupCorrectnessIndicatorView() {
         
-        if correctnessIndicatorView == nil {
+        if nextGameButton == nil {
             
-            correctnessIndicatorView = UIImageView(image: nil)
-            correctnessIndicatorView!.translatesAutoresizingMaskIntoConstraints = false
-            addSubview(correctnessIndicatorView!)
-            correctnessIndicatorView!.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+            nextGameButton = UIButton(type: .system)
+            nextGameButton!.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(nextGameButton!)
+            nextGameButton!.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
             let eventView: EventView? = eventViews.last
-            correctnessIndicatorImageViewTopConstraint = correctnessIndicatorView!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 19.0)
-            correctnessIndicatorImageViewTopConstraint!.isActive = true
-            correctnessIndicatorView?.isHidden = true
-            
+            nextGameButtonTopConstraint = nextGameButton!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 19.0)
+            nextGameButtonTopConstraint!.isActive = true
+            nextGameButton?.isHidden = true
+            nextGameButton?.addTarget(self, action: #selector(nextGameTapped(_:)), for: .touchUpInside)
         }
-        
+    }
+    
+    
+    func nextGameTapped(_ sender: UIButton) {
+        delegate?.loadNextGame()
     }
     
     func setupInstructionLabel() {
@@ -155,14 +179,13 @@ extension SingleGameView {
             instructionLabelTopConstraint!.isActive = true
             instructionLabel!.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         }
-        
     }
     
     
     func hideGameInformationView(_ shouldHide: Bool) {
         
         timerLabel?.isHidden = shouldHide
-        correctnessIndicatorView?.isHidden = shouldHide
+        nextGameButton?.isHidden = shouldHide
         instructionLabel?.isHidden = shouldHide
         
     }
@@ -202,12 +225,12 @@ extension SingleGameView {
         if let answerStatus = singleGame?.currentGameAnswerStatus {
             
             timerLabel!.isHidden = true
-            correctnessIndicatorView!.isHidden = false
+            nextGameButton!.isHidden = false
             
             let eventView: EventView? = eventViews.last
-            correctnessIndicatorImageViewTopConstraint!.isActive = false
-            correctnessIndicatorImageViewTopConstraint = correctnessIndicatorView!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 19.0)
-            correctnessIndicatorImageViewTopConstraint!.isActive = true
+            nextGameButtonTopConstraint!.isActive = false
+            nextGameButtonTopConstraint = nextGameButton!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 19.0)
+            nextGameButtonTopConstraint!.isActive = true
             
             var correctnessImage: UIImage? = nil
             if answerStatus == .correct {
@@ -216,12 +239,12 @@ extension SingleGameView {
             else if answerStatus == .incorrect {
                 correctnessImage = UIImage(named: "ImageIncorrect")
             }
-            correctnessIndicatorView!.image = correctnessImage
-            correctnessIndicatorView!.sizeToFit()
+            nextGameButton?.setBackgroundImage(correctnessImage, for: .normal)
+            nextGameButton!.sizeToFit()
             
             instructionLabel!.isHidden = false
             instructionLabelTopConstraint!.isActive = false
-            instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: correctnessIndicatorView!.bottomAnchor, constant: 9.0)
+            instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: nextGameButton!.bottomAnchor, constant: 9.0)
             instructionLabelTopConstraint!.isActive = true
             instructionLabel!.text = "Tap events to learn more"
         }

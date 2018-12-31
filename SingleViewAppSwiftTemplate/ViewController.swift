@@ -25,7 +25,7 @@ class ViewController: UIViewController {
             return
         }
         
-        currentGameView = SingleGameView(withSingleGame: newGame)
+        currentGameView = SingleGameView(withSingleGame: newGame, singleGameViewDelegate: self)
         
         view.addSubview(currentGameView!)
         
@@ -71,17 +71,47 @@ extension ViewController: GameUpdateProtocol {
 }
 
 
+extension ViewController: SingleGameViewProtocol {
+    
+    func loadNextGame() {
+        
+        let game: SingleGame? = gameController?.gameFromStore()
+        if let game = game {
+            //Game controller has successfully created a game with 4 events. Now instruct the game controller to begin.
+            currentGameView?.updateWithGame(game)
+            gameController?.beginCurrentGame()
+        }
+        else {
+            //Maybe we have reached our game limit per round. So display the final score.
+        }
+        
+    }
+    
+}
+
+
 //Reordering.
 extension ViewController {
     
     func eventDirectionButtonTapped(_ sender: Notification) {
         
-        let direction: EventMovingDirection = (sender.userInfo!["direction"]) as! EventMovingDirection
-        let position: Int = (sender.userInfo!["position"]) as! Int
+        let direction: EventMovingDirection? = (sender.userInfo!["direction"]) as? EventMovingDirection
+        let position: Int? = (sender.userInfo!["position"]) as? Int
         
-        //Tell the game controller to update the singleGame model with the new order of events.
-        gameController?.moveEventPresent(inPosition: position, direction: direction)
+        if let direction = direction, let position = position {
+            
+            //Tell the game controller to update the singleGame model with the new order of events.
+            gameController?.moveEventPresent(inPosition: position, direction: direction)
+        }
         
     }
 }
+
+
+
+//Shake to complete current game
+extension ViewController {
+    
+}
+
 

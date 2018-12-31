@@ -26,6 +26,8 @@ class GameController {
     var gameTimer: EventTimer? = nil
     var numberOfGamesPerRound: Int = 6
     var gameCountInCurrentRound: Int = 0
+    var numberOfEventsInEachGame: Int = 4
+    var numberOfCorrectAnswersInCurrentRound:Int = 0
     var allEvents: [EventDisplay] = []
     
     
@@ -33,6 +35,7 @@ class GameController {
         
         gameControllerDelegate = delegate
         
+        //Access events data from the plist and populate your data source.
         let rawListOfEvents: [[String: Any]]? = PlistConverter.arrayOfDictionariesFromPlist(withName: "Events")
         
         if let rawListOfEvents = rawListOfEvents {
@@ -53,7 +56,7 @@ class GameController {
         
         if gameCountInCurrentRound < numberOfGamesPerRound && allEvents.isEmpty == false {
             
-            let eventIndexes: [Int] = uniqueEventIndexes()
+            let eventIndexes: [Int] = UniqueNumberGenerator.listOfUniqueIntegers(count: numberOfEventsInEachGame, upperLimit: allEvents.count-1)
             
             if eventIndexes.isEmpty == false {
                 
@@ -73,27 +76,7 @@ class GameController {
     }
     
     
-    func uniqueEventIndexes() -> [Int] {
-        
-        var eventIndexesInCurrentRound: [Int] = []
-        
-        while eventIndexesInCurrentRound.count != numberOfGamesPerRound {
-            
-            let uniqueInteger: Int = randomInteger()
-            if eventIndexesInCurrentRound.contains(uniqueInteger) == false {
-                eventIndexesInCurrentRound.append(uniqueInteger)
-            }
-        }
-        return eventIndexesInCurrentRound
-    }
-    
-    
-    func randomInteger() -> Int {
-        return GKRandomSource.sharedRandom().nextInt(upperBound: allEvents.count-1)
-    }
-    
-    
-    func beginCurrentGame() {
+   func beginCurrentGame() {
         
         if let game = currentGame {
             
@@ -103,6 +86,7 @@ class GameController {
             
             //Change game status and initiate the timer.
             game.currentGameStatus = .inProgress
+            gameControllerDelegate?.updateWithGameStatus(.inProgress)
             gameTimer = EventTimer(withInitialValue: 60, direction: .reverse, delegate: self)
             gameTimer?.initiateTimer()
         }
@@ -121,14 +105,7 @@ class GameController {
         
         //Now that the game is complete, check user selected order and validate.
         //Set it to correct for now.
-//        var gameControllerOrder: NSArray = currentGame!.events as NSArray
-//        let sortDesc: NSSortDescriptor = NSSortDescriptor(key: "year", ascending: true)
-//        gameControllerOrder = gameControllerOrder.sortedArray(using: [sortDesc]) as NSArray
-        
-       
-        
-        
-        
+
         let gameControllerOrder: [EventDisplay] = currentGame!.events.sorted(by: { (eventOne: EventDisplay, eventTwo: EventDisplay) -> Bool in
             
             return eventOne.year < eventTwo.year
@@ -136,6 +113,7 @@ class GameController {
         
         let userSelectedOrder: [EventDisplay] = currentGame!.events
         if  gameControllerOrder.isEventDisplayArray(userSelectedOrder) == true {
+            numberOfCorrectAnswersInCurrentRound = numberOfCorrectAnswersInCurrentRound + 1
             currentGame?.currentGameAnswerStatus = .correct
             gameControllerDelegate?.updateWithGameAnswerStatus(.correct)
         }
@@ -143,12 +121,6 @@ class GameController {
             currentGame?.currentGameAnswerStatus = .incorrect
             gameControllerDelegate?.updateWithGameAnswerStatus(.incorrect)
         }
-        
-        
-        
-        
-        
-        
     }
     
     
