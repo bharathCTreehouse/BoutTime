@@ -67,6 +67,7 @@ class GameController {
                 let thirdEvent: EventDisplay = allEvents[eventIndexes[2]]
                 let fourthEvent: EventDisplay = allEvents[eventIndexes.last!]
                 
+                currentGame = nil
                 currentGame = SingleGame(withEventsToArrange: [firstEvent, secondEvent, thirdEvent, fourthEvent])
                 return currentGame
             }
@@ -104,7 +105,6 @@ class GameController {
         gameControllerDelegate?.updateWithGameStatus(.completed)
         
         //Now that the game is complete, check user selected order and validate.
-        //Set it to correct for now.
 
         let gameControllerOrder: [EventDisplay] = currentGame!.events.sorted(by: { (eventOne: EventDisplay, eventTwo: EventDisplay) -> Bool in
             
@@ -144,6 +144,17 @@ class GameController {
         }
         
     }
+    
+    
+    
+    func resetCurrentRoundData() {
+        
+         currentGame  = nil
+         gameTimer?.invalidateTimer()
+         gameTimer = nil
+         gameCountInCurrentRound = 0
+         numberOfCorrectAnswersInCurrentRound = 0
+    }
 }
 
 
@@ -162,8 +173,3 @@ extension GameController: TimerProtocol {
 }
 
 
-
-//Shake to complete current game
-extension GameController {
-    
-}

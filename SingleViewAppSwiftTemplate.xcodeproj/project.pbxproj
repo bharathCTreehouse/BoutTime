@@ -25,6 +25,8 @@
 		4C15C10721D94F370067BC3D /* Events.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C15C10621D94F370067BC3D /* Events.plist */; };
 		4C15C10921D96D280067BC3D /* EventArrayAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15C10821D96D280067BC3D /* EventArrayAddition.swift */; };
 		4C15C10B21DA0E5E0067BC3D /* UniqueNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15C10A21DA0E5E0067BC3D /* UniqueNumberGenerator.swift */; };
+		4C15C10D21DA6D9E0067BC3D /* FinalScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15C10C21DA6D9E0067BC3D /* FinalScoreViewController.swift */; };
+		4C15C10F21DA6E1C0067BC3D /* FinalScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C15C10E21DA6E1C0067BC3D /* FinalScoreViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		4C15C10621D94F370067BC3D /* Events.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Events.plist; sourceTree = "<group>"; };
 		4C15C10821D96D280067BC3D /* EventArrayAddition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventArrayAddition.swift; sourceTree = "<group>"; };
 		4C15C10A21DA0E5E0067BC3D /* UniqueNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniqueNumberGenerator.swift; sourceTree = "<group>"; };
+		4C15C10C21DA6D9E0067BC3D /* FinalScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalScoreViewController.swift; sourceTree = "<group>"; };
+		4C15C10E21DA6E1C0067BC3D /* FinalScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalScoreViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,8 @@
 				4C15C10621D94F370067BC3D /* Events.plist */,
 				4C15C10821D96D280067BC3D /* EventArrayAddition.swift */,
 				4C15C10A21DA0E5E0067BC3D /* UniqueNumberGenerator.swift */,
+				4C15C10C21DA6D9E0067BC3D /* FinalScoreViewController.swift */,
+				4C15C10E21DA6E1C0067BC3D /* FinalScoreViewController.xib */,
 			);
 			path = SingleViewAppSwiftTemplate;
 			sourceTree = "<group>";
@@ -226,6 +232,7 @@
 				TargetAttributes = {
 					3A8AADC41DF9B85E00A2B931 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 73CXK45F3F;
 						ProvisioningStyle = Automatic;
 					};
 					3A8AADD81DF9B85E00A2B931 = {
@@ -265,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C15C10F21DA6E1C0067BC3D /* FinalScoreViewController.xib in Resources */,
 				4C15C10721D94F370067BC3D /* Events.plist in Resources */,
 				3A8AADD31DF9B85E00A2B931 /* LaunchScreen.storyboard in Resources */,
 				3A8AADD01DF9B85E00A2B931 /* Assets.xcassets in Resources */,
@@ -304,6 +312,7 @@
 				4C15C10321D92EA70067BC3D /* GameController.swift in Sources */,
 				4C15C10B21DA0E5E0067BC3D /* UniqueNumberGenerator.swift in Sources */,
 				3A8AADC91DF9B85E00A2B931 /* AppDelegate.swift in Sources */,
+				4C15C10D21DA6D9E0067BC3D /* FinalScoreViewController.swift in Sources */,
 				4C104BBE21D4B9EB00F9DEDF /* EventView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,9 +463,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 73CXK45F3F;
 				INFOPLIST_FILE = SingleViewAppSwiftTemplate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.teamtreehouse.SingleViewAppSwiftTemplate;
+				PRODUCT_BUNDLE_IDENTIFIER = TreehouseTechdegree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -466,9 +476,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 73CXK45F3F;
 				INFOPLIST_FILE = SingleViewAppSwiftTemplate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.teamtreehouse.SingleViewAppSwiftTemplate;
+				PRODUCT_BUNDLE_IDENTIFIER = TreehouseTechdegree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

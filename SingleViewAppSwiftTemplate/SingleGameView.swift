@@ -28,8 +28,8 @@ class SingleGameView: UIView {
     var instructionLabelTopConstraint: NSLayoutConstraint? = nil
     var timerLabelTopConstraint: NSLayoutConstraint? = nil
     var nextGameButtonTopConstraint: NSLayoutConstraint? = nil
-
-
+    
+    
     var eventViews: [EventView] = []
     var eventViewConstraints: [NSLayoutConstraint] = []
     
@@ -37,8 +37,8 @@ class SingleGameView: UIView {
     var nextGameButton: UIButton? = nil
     var instructionLabel: UILabel? = nil
     weak var delegate: SingleGameViewProtocol? = nil
-
-
+    
+    
     
     init(withSingleGame game: SingleGame, singleGameViewDelegate: SingleGameViewProtocol?) {
         
@@ -54,40 +54,42 @@ class SingleGameView: UIView {
     
     
     func updateWithGame(_ game: SingleGame) {
-        for view in subviews {
-            view.removeFromSuperview()
-        }
-        timerLabel = nil
-        nextGameButton = nil
-        instructionLabel = nil
-        nextGameButtonTopConstraint?.isActive = false
-        nextGameButtonTopConstraint = nil
-        instructionLabelTopConstraint?.isActive = false
-        instructionLabelTopConstraint = nil
-        
         singleGame = game
     }
     
     
     func createEventViews() {
         
-        eventViews.removeAll()
-        
-        let allEvents: [EventDisplay] = singleGame!.events
-        
-        for (tracker, event) in allEvents.enumerated() {
+        if eventViews.isEmpty == true {
             
-            //Create event views and populate the array.
+            //Event views have not been setup. Set them up.
             
-            var direction: EventMovingDirection = .upAndDown
-            if tracker == 0 {
-                direction = .onlyDown
+            let allEvents: [EventDisplay] = singleGame!.events
+            
+            for (tracker, event) in allEvents.enumerated() {
+                
+                //Create event views and populate the array.
+                
+                var direction: EventMovingDirection = .upAndDown
+                if tracker == 0 {
+                    direction = .onlyDown
+                }
+                else if tracker == allEvents.count-1 {
+                    direction = .onlyUp
+                }
+                let eventView: EventView = EventView(withEvent: event, positionInGame: tracker, eventMovingDirection: direction)
+                eventViews.append(eventView)
             }
-            else if tracker == allEvents.count-1 {
-                direction = .onlyUp
+        }
+        else {
+            //Views have already been setup. Just update the content.
+            for (tracker, eventView) in eventViews.enumerated() {
+                let event: EventDisplay? = singleGame?.events[tracker]
+                if let event = event {
+                    eventView.updateEvent(event)
+                    eventView.enableDirectionButtons(true)
+                }
             }
-            let eventView: EventView = EventView(withEvent: event, positionInGame: tracker, eventMovingDirection: direction)
-            eventViews.append(eventView)
         }
     }
 }
@@ -97,31 +99,34 @@ extension SingleGameView {
     
     func setupEventView() {
         
-        eventViewConstraints.removeAll()
-        
-        for (tracker, eventView) in eventViews.enumerated() {
+        if eventViewConstraints.isEmpty == true {
             
-            var topConstraint: NSLayoutConstraint? = nil
+            //Event view constraints have not been setup. Set them up and store the top constraint of event event view in an array. This will be used to move the view up and down.
             
-            addSubview(eventView)
-            
-            if tracker == 0 {
+            for (tracker, eventView) in eventViews.enumerated() {
                 
-                //First event view
-                topConstraint = eventView.topAnchor.constraint(equalTo: topAnchor, constant: 18.0)
-                topConstraint!.isActive = true
-                eventViewConstraints.append(topConstraint!)
+                var topConstraint: NSLayoutConstraint? = nil
+                
+                addSubview(eventView)
+                
+                if tracker == 0 {
+                    
+                    //First event view
+                    topConstraint = eventView.topAnchor.constraint(equalTo: topAnchor, constant: 18.0)
+                    topConstraint!.isActive = true
+                    eventViewConstraints.append(topConstraint!)
+                }
+                else {
+                    let previousViewBottomAnchor: NSLayoutAnchor = eventViews[tracker - 1].bottomAnchor
+                    topConstraint = eventView.topAnchor.constraint(equalTo: previousViewBottomAnchor, constant: 9.0)
+                    topConstraint!.isActive = true
+                    eventViewConstraints.append(topConstraint!)
+                }
+                
+                eventView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.0).isActive = true
+                eventView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.0).isActive = true
+                eventView.heightAnchor.constraint(equalToConstant: eventView.currentHeightOfView()).isActive = true
             }
-            else {
-                let previousViewBottomAnchor: NSLayoutAnchor = eventViews[tracker - 1].bottomAnchor
-                topConstraint = eventView.topAnchor.constraint(equalTo: previousViewBottomAnchor, constant: 9.0)
-                topConstraint!.isActive = true
-                eventViewConstraints.append(topConstraint!)
-            }
-            
-            eventView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.0).isActive = true
-            eventView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.0).isActive = true
-            eventView.heightAnchor.constraint(equalToConstant: eventView.currentHeightOfView()).isActive = true
         }
     }
     
@@ -155,7 +160,6 @@ extension SingleGameView {
             let eventView: EventView? = eventViews.last
             nextGameButtonTopConstraint = nextGameButton!.topAnchor.constraint(equalTo: eventView!.bottomAnchor, constant: 19.0)
             nextGameButtonTopConstraint!.isActive = true
-            nextGameButton?.isHidden = true
             nextGameButton?.addTarget(self, action: #selector(nextGameTapped(_:)), for: .touchUpInside)
         }
     }
@@ -200,6 +204,7 @@ extension SingleGameView {
             
             if gameStatus == .inProgress {
                 
+                nextGameButton?.isHidden = true
                 timerLabel!.isHidden = false
                 instructionLabel!.isHidden = false
                 instructionLabelTopConstraint!.isActive = false
@@ -244,7 +249,7 @@ extension SingleGameView {
             
             instructionLabel!.isHidden = false
             instructionLabelTopConstraint!.isActive = false
-            instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: nextGameButton!.bottomAnchor, constant: 9.0)
+            instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: nextGameButton!.bottomAnchor, constant: 13.0)
             instructionLabelTopConstraint!.isActive = true
             instructionLabel!.text = "Tap events to learn more"
         }

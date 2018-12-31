@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
+        
         gameController = GameController(withDelegate: self)
         let game: SingleGame? = gameController?.gameFromStore()
         
@@ -83,6 +84,12 @@ extension ViewController: SingleGameViewProtocol {
         }
         else {
             //Maybe we have reached our game limit per round. So display the final score.
+            let scoreVC: FinalScoreViewController = FinalScoreViewController(withUserScore: gameController!.numberOfCorrectAnswersInCurrentRound, numberOfGames: gameController!.numberOfGamesPerRound, playAgainCompletionHandler:  ( { [unowned self] () -> Void in
+                
+                self.gameController!.resetCurrentRoundData()
+                self.loadNextGame()
+            }))
+            present(scoreVC, animated: true, completion: nil)
         }
         
     }
@@ -111,6 +118,16 @@ extension ViewController {
 
 //Shake to complete current game
 extension ViewController {
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        
+        guard let event = event else {
+            return
+        }
+        if(event.subtype == UIEventSubtype.motionShake) {
+            gameController?.finishCurrentGame()
+        }
+    }
     
 }
 
