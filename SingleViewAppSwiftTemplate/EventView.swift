@@ -17,31 +17,28 @@ enum EventMovingDirection {
 
 class EventView: UIView {
     
-    @IBOutlet var moveUpButton: UIButton!
-    @IBOutlet var moveDownButton: UIButton!
-    @IBOutlet var moveOnlyUpButton: UIButton!
-    @IBOutlet var moveOnlyDownButton: UIButton!
-    @IBOutlet var eventTitleLabel: UILabel!
+    @IBOutlet fileprivate var moveUpButton: UIButton!
+    @IBOutlet fileprivate var moveDownButton: UIButton!
+    @IBOutlet fileprivate var moveOnlyUpButton: UIButton!
+    @IBOutlet fileprivate var moveOnlyDownButton: UIButton!
+    @IBOutlet fileprivate var eventTitleLabel: UILabel!
     
-    var eventTitleLabelTrailingConstraint: NSLayoutConstraint? = nil
-    
+    fileprivate var eventTitleLabelTrailingConstraint: NSLayoutConstraint? = nil
     fileprivate var heightOfView: CGFloat = 0.0
-    
-    weak var eventView: UIView? = nil  //Will be loaded from an XIB.
+    fileprivate weak var eventView: UIView? = nil  //Will be loaded from an XIB.
     
     var event: EventDisplay? = nil {
         didSet {
             setupEventView()
         }
     }
+    
     var eventPosition: Int = 0
     
-    var eventMovingDirection: EventMovingDirection? = nil {
-        
+    fileprivate var eventMovingDirection: EventMovingDirection? = nil {
         //Based on the direction, update the button images.
-
         didSet {
-            updateButtons()
+            updateEventMovementButtonAppearance()
         }
     }
     
@@ -53,7 +50,7 @@ class EventView: UIView {
         updateEvent(event)
         updateMovingDirection(eventMovingDirection)
         
-}
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -72,28 +69,44 @@ class EventView: UIView {
     func currentHeightOfView() -> CGFloat {
         return heightOfView
     }
+    
+    
+    deinit {
+        
+        moveUpButton = nil
+        moveDownButton = nil
+        moveOnlyUpButton = nil
+        moveOnlyDownButton = nil
+        eventTitleLabel = nil
+        eventTitleLabelTrailingConstraint = nil
+        eventView = nil
+        event = nil
+        eventMovingDirection = nil
+        
+    }
 }
 
 
 extension EventView {
     
     @IBAction func moveEventUpButtonTapped(_ sender: UIButton) {
-        
-        let notificationCentre: NotificationCenter = NotificationCenter.default
-        let userInfoDictionary: [String: Any] = ["position":self.eventPosition, "direction": EventMovingDirection.onlyUp]
-        notificationCentre.post(name: NSNotification.Name(rawValue: "BoutTimeDirectionButtonTapped"), object: nil, userInfo: userInfoDictionary)
+        postEventMovementNotification(forDirection: .onlyUp)
     }
     
     
     @IBAction func moveEventDownButtonTapped(_ sender: UIButton) {
+        postEventMovementNotification(forDirection: .onlyDown)
+    }
+    
+    
+    private func postEventMovementNotification(forDirection direction: EventMovingDirection) {
         
         let notificationCentre: NotificationCenter = NotificationCenter.default
-        let userInfoDictionary: [String: Any] = ["position":self.eventPosition, "direction": EventMovingDirection.onlyDown]
+        let userInfoDictionary: [String: Any] = ["position":self.eventPosition, "direction": direction]
         notificationCentre.post(name: NSNotification.Name(rawValue: "BoutTimeDirectionButtonTapped"), object: nil, userInfo: userInfoDictionary)
     }
     
 }
-
 
 
 
@@ -118,7 +131,7 @@ extension EventView {
     }
     
     
-    func updateButtons() {
+    func updateEventMovementButtonAppearance() {
         
         switch eventMovingDirection! {
             
@@ -146,7 +159,6 @@ extension EventView {
             eventTitleLabelTrailingConstraint?.isActive = true
             
             
-            
         case .onlyDown:
             moveOnlyUpButton.isHidden = true
             moveUpButton.isHidden = true
@@ -163,15 +175,13 @@ extension EventView {
                 moveOnlyDownButton.setBackgroundImage(selectedStateImage, for: .highlighted)
             }
             
-            
-            
             moveOnlyDownButton.sizeToFit()
             heightOfView = moveOnlyDownButton.frame.size.height
             
             eventTitleLabelTrailingConstraint?.isActive = false
             eventTitleLabelTrailingConstraint = eventTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(moveOnlyDownButton.frame.size.width + 16.0))
             eventTitleLabelTrailingConstraint?.isActive = true
-
+            
             
         case .upAndDown:
             moveOnlyUpButton.isHidden = true
@@ -206,7 +216,7 @@ extension EventView {
             eventTitleLabelTrailingConstraint?.isActive = false
             eventTitleLabelTrailingConstraint = eventTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -(moveUpButton.frame.size.width + 16.0))
             eventTitleLabelTrailingConstraint?.isActive = true
-
+            
         }
     }
     

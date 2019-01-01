@@ -17,7 +17,7 @@ protocol SingleGameViewProtocol: class {
 
 class SingleGameView: UIView {
     
-    var singleGame: SingleGame? = nil {
+    fileprivate var singleGame: SingleGame? = nil {
         didSet {
             createEventViews()
             setupEventView()
@@ -26,18 +26,18 @@ class SingleGameView: UIView {
             setupInstructionLabel()
         }
     }
-    var instructionLabelTopConstraint: NSLayoutConstraint? = nil
-    var timerLabelTopConstraint: NSLayoutConstraint? = nil
-    var nextGameButtonTopConstraint: NSLayoutConstraint? = nil
+    fileprivate var instructionLabelTopConstraint: NSLayoutConstraint? = nil
+    fileprivate var timerLabelTopConstraint: NSLayoutConstraint? = nil
+    fileprivate var nextGameButtonTopConstraint: NSLayoutConstraint? = nil
     
     
-    var eventViews: [EventView] = []
-    var eventViewConstraints: [NSLayoutConstraint] = []
+    fileprivate var eventViews: [EventView] = []
+    fileprivate var eventViewConstraints: [NSLayoutConstraint] = []
     
-    var timerLabel: UILabel? = nil
-    var nextGameButton: UIButton? = nil
-    var instructionLabel: UILabel? = nil
-    weak var delegate: SingleGameViewProtocol? = nil
+    fileprivate var timerLabel: UILabel? = nil
+    fileprivate var nextGameButton: UIButton? = nil
+    fileprivate var instructionLabel: UILabel? = nil
+    weak fileprivate var delegate: SingleGameViewProtocol? = nil
     
     
     
@@ -93,6 +93,21 @@ class SingleGameView: UIView {
                 }
             }
         }
+    }
+    
+    
+    deinit {
+        
+        singleGame = nil
+        instructionLabelTopConstraint = nil
+        timerLabelTopConstraint = nil
+        nextGameButtonTopConstraint = nil
+        eventViews.removeAll()
+        eventViewConstraints.removeAll()
+        timerLabel = nil
+        nextGameButton = nil
+        instructionLabel = nil
+        delegate = nil
     }
 }
 

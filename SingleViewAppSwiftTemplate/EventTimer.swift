@@ -68,4 +68,11 @@ class EventTimer {
         
     }
     
+    
+    deinit {
+        
+        delegate = nil
+        timer = nil
+    }
+    
 }

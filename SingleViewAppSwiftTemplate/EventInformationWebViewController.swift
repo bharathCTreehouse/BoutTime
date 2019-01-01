@@ -47,6 +47,13 @@ class EventInformationWebViewController: UIViewController {
     @IBAction func closeWebViewButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    deinit {
+        closeWebViewButton = nil
+        closeWebViewImageView = nil
+        webView = nil
+    }
 }
 
 
@@ -66,6 +73,9 @@ extension EventInformationWebViewController: WKNavigationDelegate {
 
 
 extension EventInformationWebViewController {
+    
+    //WKWebView getting added through code and not through XIB.
+    //Reason: https://stackoverflow.com/questions/46221577/xcode-9-gm-wkwebview-nscoding-support-was-broken-in-previous-versions
     
     func setupWebView() {
         

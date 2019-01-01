@@ -19,6 +19,13 @@ protocol GameUpdateProtocol: class {
 }
 
 
+enum GameError: Swift.Error {
+    case gameLimitReached
+    case eventCreationFailure
+    case gameCreationFailure
+}
+
+
 class GameController {
     
     var currentGame: SingleGame? = nil
@@ -50,34 +57,52 @@ class GameController {
     }
     
     
-    func gameFromStore() -> SingleGame? {
+    func gameFromStore() throws -> SingleGame {
         
-        //TODO: This method can actually throw an error to be more specific.
-        
-        if gameCountInCurrentRound < numberOfGamesPerRound && allEvents.isEmpty == false {
+        if gameCountInCurrentRound < numberOfGamesPerRound  {
             
-            let eventIndexes: [Int] = UniqueNumberGenerator.listOfUniqueIntegers(count: numberOfEventsInEachGame, upperLimit: allEvents.count-1)
-            
-            if eventIndexes.isEmpty == false {
+            if allEvents.isEmpty == false {
                 
-                gameCountInCurrentRound = gameCountInCurrentRound + 1
+                let eventIndexes: [Int] = UniqueNumberGenerator.listOfUniqueIntegers(count: numberOfEventsInEachGame, upperLimit: allEvents.count-1)
                 
-                let firstEvent: EventDisplay = allEvents[eventIndexes.first!]
-                let secondEvent: EventDisplay = allEvents[eventIndexes[1]]
-                let thirdEvent: EventDisplay = allEvents[eventIndexes[2]]
-                let fourthEvent: EventDisplay = allEvents[eventIndexes.last!]
-                
-                currentGame = nil
-                currentGame = SingleGame(withEventsToArrange: [firstEvent, secondEvent, thirdEvent, fourthEvent])
-                return currentGame
+                if eventIndexes.isEmpty == false {
+                    
+                    gameCountInCurrentRound = gameCountInCurrentRound + 1
+                    
+                    let firstEvent: EventDisplay = allEvents[eventIndexes.first!]
+                    let secondEvent: EventDisplay = allEvents[eventIndexes[1]]
+                    let thirdEvent: EventDisplay = allEvents[eventIndexes[2]]
+                    let fourthEvent: EventDisplay = allEvents[eventIndexes.last!]
+                    
+                    currentGame = nil
+                    currentGame = SingleGame(withEventsToArrange: [firstEvent, secondEvent, thirdEvent, fourthEvent])
+                    if currentGame == nil {
+                        //Could not create a game with necessary events.
+                        throw GameError.gameCreationFailure
+                    }
+                    
+                }
+                else {
+                    //Could not generate random numbers and hence failed to create events.
+                    throw GameError.eventCreationFailure
+                }
+            }
+            else {
+                //Could not create events from the plist.
+                throw GameError.eventCreationFailure
             }
             
         }
-        return nil
+        else {
+            //We have reached the max limit for the number of games per round.
+            throw GameError.gameLimitReached
+        }
+        
+        return currentGame!
     }
     
     
-   func beginCurrentGame() {
+    func beginCurrentGame() {
         
         if let game = currentGame {
             
@@ -105,14 +130,14 @@ class GameController {
         gameControllerDelegate?.updateWithGameStatus(.completed)
         
         //Now that the game is complete, check user selected order and validate.
-
+        
         let gameControllerOrder: [EventDisplay] = currentGame!.events.sorted(by: { (eventOne: EventDisplay, eventTwo: EventDisplay) -> Bool in
             
             return eventOne.year < eventTwo.year
         })
         
         let userSelectedOrder: [EventDisplay] = currentGame!.events
-        if  gameControllerOrder.isEventDisplayArray(userSelectedOrder) == true {
+        if  gameControllerOrder.isEqualToEventArray(userSelectedOrder) == true {
             numberOfCorrectAnswersInCurrentRound = numberOfCorrectAnswersInCurrentRound + 1
             currentGame?.currentGameAnswerStatus = .correct
             gameControllerDelegate?.updateWithGameAnswerStatus(.correct)
@@ -121,6 +146,17 @@ class GameController {
             currentGame?.currentGameAnswerStatus = .incorrect
             gameControllerDelegate?.updateWithGameAnswerStatus(.incorrect)
         }
+    }
+    
+    
+    func finishCurrentRound() {
+        
+        gameTimer?.invalidateTimer()
+        gameTimer = nil
+        
+        //Update the current game status to inactive/notStarted and inform the delegate.
+        currentGame?.currentGameStatus = .notStarted
+        gameControllerDelegate?.updateWithGameStatus(.notStarted)
     }
     
     
@@ -146,14 +182,21 @@ class GameController {
     }
     
     
-    
     func resetCurrentRoundData() {
         
-         currentGame  = nil
-         gameTimer?.invalidateTimer()
+        currentGame  = nil
+        gameTimer?.invalidateTimer()
+        gameTimer = nil
+        gameCountInCurrentRound = 0
+        numberOfCorrectAnswersInCurrentRound = 0
+    }
+    
+    
+    deinit {
+         currentGame = nil
+         gameControllerDelegate = nil
          gameTimer = nil
-         gameCountInCurrentRound = 0
-         numberOfCorrectAnswersInCurrentRound = 0
+         allEvents.removeAll()
     }
 }
 

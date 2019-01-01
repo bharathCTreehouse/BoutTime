@@ -28,7 +28,6 @@ extension Event: EventDisplay {
         return yearItOccurred
     }
     
-    
     var eventTitle : String {
         return title
     }

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SingleViewAppSwiftTemplate/SingleGameView.swift"
-            timestampString = "568057781.8986"
+            timestampString = "568067848.518502"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "updateViewForGameStatus()"
             landmarkType = "7">
          </BreakpointContent>

@@ -29,6 +29,7 @@
 		4C15C10F21DA6E1C0067BC3D /* FinalScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C15C10E21DA6E1C0067BC3D /* FinalScoreViewController.xib */; };
 		4C15C11221DBA3CA0067BC3D /* EventInformationWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15C11021DBA3CA0067BC3D /* EventInformationWebViewController.swift */; };
 		4C15C11321DBA3CB0067BC3D /* EventInformationWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C15C11121DBA3CA0067BC3D /* EventInformationWebViewController.xib */; };
+		4C15C11521DBEACC0067BC3D /* ViewAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15C11421DBEACC0067BC3D /* ViewAdditions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		4C15C10E21DA6E1C0067BC3D /* FinalScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalScoreViewController.xib; sourceTree = "<group>"; };
 		4C15C11021DBA3CA0067BC3D /* EventInformationWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInformationWebViewController.swift; sourceTree = "<group>"; };
 		4C15C11121DBA3CA0067BC3D /* EventInformationWebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventInformationWebViewController.xib; sourceTree = "<group>"; };
+		4C15C11421DBEACC0067BC3D /* ViewAdditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAdditions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				4C15C10E21DA6E1C0067BC3D /* FinalScoreViewController.xib */,
 				4C15C11021DBA3CA0067BC3D /* EventInformationWebViewController.swift */,
 				4C15C11121DBA3CA0067BC3D /* EventInformationWebViewController.xib */,
+				4C15C11421DBEACC0067BC3D /* ViewAdditions.swift */,
 			);
 			path = SingleViewAppSwiftTemplate;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				4C0A117A21D611F200105399 /* SingleGame.swift in Sources */,
 				4C15C10321D92EA70067BC3D /* GameController.swift in Sources */,
 				4C15C10B21DA0E5E0067BC3D /* UniqueNumberGenerator.swift in Sources */,
+				4C15C11521DBEACC0067BC3D /* ViewAdditions.swift in Sources */,
 				3A8AADC91DF9B85E00A2B931 /* AppDelegate.swift in Sources */,
 				4C15C10D21DA6D9E0067BC3D /* FinalScoreViewController.swift in Sources */,
 				4C104BBE21D4B9EB00F9DEDF /* EventView.swift in Sources */,

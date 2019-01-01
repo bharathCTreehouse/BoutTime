@@ -12,40 +12,76 @@ class ViewController: UIViewController {
     
     var currentGameView: SingleGameView? = nil
     var gameController: GameController? = nil
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        
         gameController = GameController(withDelegate: self)
-        let game: SingleGame? = gameController?.gameFromStore()
         
-        guard let newGame = game else {
-            //Game controller unable to create a new game. So just return.
-            return
+        if gameController != nil {
+            
+            do {
+                let game: SingleGame = try (gameController?.gameFromStore())!
+                createAndSetupGameView(forGame: game)
+                
+                if currentGameView != nil {
+                    
+                    //Add observer to react to event movement action.
+                    NotificationCenter.default.addObserver(self, selector: #selector(eventDirectionButtonTapped(_:)), name: NSNotification.Name(rawValue: "BoutTimeDirectionButtonTapped"), object: nil)
+                    
+                    //Once all the UI is setup, ask the game controller to begin the current game.
+                    gameController?.beginCurrentGame()
+                }
+            }
+            catch GameError.gameLimitReached {
+                // We have reached our game limit per round. So display the final score.
+                displayFinalScoreViewController()
+                gameController?.finishCurrentRound()
+                
+            }
+            catch GameError.eventCreationFailure {
+                showAlert(forGameError: GameError.eventCreationFailure)
+            }
+            catch GameError.gameCreationFailure {
+                showAlert(forGameError: GameError.gameCreationFailure)
+            }
+            catch {
+                showAlert()
+            }
+        }
+    }
+    
+    
+    func createAndSetupGameView(forGame game: SingleGame) {
+        
+        currentGameView = SingleGameView(withSingleGame: game, singleGameViewDelegate: self)
+        
+        if currentGameView != nil {
+            
+            view.addSubview(currentGameView!)
+            
+            let safeAreaGuide: UILayoutGuide? = view.safeAreaLayoutGuideToBeUsed()
+            
+            if safeAreaGuide == nil {
+                //Safe area guide not available.
+                currentGameView!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            }
+            else {
+                //Safe area guide available.
+                currentGameView!.topAnchor.constraint(equalTo: safeAreaGuide!.topAnchor).isActive = true
+            }
+            currentGameView!.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            currentGameView!.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            currentGameView!.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         }
         
-        currentGameView = SingleGameView(withSingleGame: newGame, singleGameViewDelegate: self)
-        
-        view.addSubview(currentGameView!)
-        
-        if #available(iOS 11.0, *) {
-            currentGameView!.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        } else {
-            // Fallback on earlier versions
-            currentGameView!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        }
-        currentGameView!.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        currentGameView!.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        currentGameView!.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(eventDirectionButtonTapped(_:)), name: NSNotification.Name(rawValue: "BoutTimeDirectionButtonTapped"), object: nil)
-        
-        
-        //Once all the UI is setup, ask the game controller to begin the current game.
-        gameController?.beginCurrentGame()
-        
+    }
+    
+    
+    deinit {
+         currentGameView = nil
+         gameController = nil
     }
 }
 
@@ -74,24 +110,30 @@ extension ViewController: GameUpdateProtocol {
 
 extension ViewController: SingleGameViewProtocol {
     
-    func loadNextGame() {
+   func loadNextGame() {
         
-        let game: SingleGame? = gameController?.gameFromStore()
-        if let game = game {
+        do {
+            let game: SingleGame = try gameController!.gameFromStore()
+            
             //Game controller has successfully created a game with 4 events. Now instruct the game controller to begin.
             currentGameView?.updateWithGame(game)
             gameController?.beginCurrentGame()
+            
         }
-        else {
-            //Maybe we have reached our game limit per round. So display the final score.
-            let scoreVC: FinalScoreViewController = FinalScoreViewController(withUserScore: gameController!.numberOfCorrectAnswersInCurrentRound, numberOfGames: gameController!.numberOfGamesPerRound, playAgainCompletionHandler:  ( { [unowned self] () -> Void in
-                
-                self.gameController!.resetCurrentRoundData()
-                self.loadNextGame()
-            }))
-            present(scoreVC, animated: true, completion: nil)
+        catch GameError.gameLimitReached {
+            // We have reached our game limit per round. So display the final score.
+            displayFinalScoreViewController()
+            gameController?.finishCurrentRound()
         }
-        
+        catch GameError.eventCreationFailure {
+            showAlert(forGameError: GameError.eventCreationFailure)
+        }
+        catch GameError.gameCreationFailure {
+            showAlert(forGameError: GameError.gameCreationFailure)
+        }
+        catch {
+            showAlert()
+        }
     }
     
     
@@ -103,8 +145,6 @@ extension ViewController: SingleGameViewProtocol {
         }
         
     }
-
-    
 }
 
 
@@ -138,6 +178,46 @@ extension ViewController {
         if(event.subtype == UIEventSubtype.motionShake) {
             gameController?.finishCurrentGame()
         }
+    }
+    
+}
+
+
+//Showing final score view controller
+extension ViewController {
+    
+    func displayFinalScoreViewController() {
+        
+        let scoreVC: FinalScoreViewController = FinalScoreViewController(withUserScore: gameController!.numberOfCorrectAnswersInCurrentRound, numberOfGames: gameController!.numberOfGamesPerRound, playAgainCompletionHandler:  ( { [unowned self] () -> Void in
+            
+            self.gameController!.resetCurrentRoundData()
+            self.loadNextGame()
+        }))
+        present(scoreVC, animated: true, completion: nil)
+        
+    }
+}
+
+
+//Alert display
+extension ViewController {
+    
+    func showAlert(forGameError error: GameError? = nil) {
+        
+        var errorMessage: String = "Unknown error has occurred."
+        if error == .eventCreationFailure {
+            errorMessage = "Unable to create events for the game."
+        }
+        else if error == .gameCreationFailure {
+            errorMessage = "Failed to create a game with the necessary number of events."
+        }
+        
+        let eventAlertController: UIAlertController = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+        
+        let okAction: UIAlertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        eventAlertController.addAction(okAction)
+        
+        present(eventAlertController, animated: true, completion: nil)
     }
     
 }

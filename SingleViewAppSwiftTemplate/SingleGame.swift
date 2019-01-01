@@ -27,7 +27,7 @@ enum GameAnswerStatus {
 
 class SingleGame {
     
-    var events: [EventDisplay] = []  //User order.
+    var events: [EventDisplay] = []  //User selected order.
     var currentGameStatus: GameStatus = .unknown
     var currentGameAnswerStatus: GameAnswerStatus = .unknown
     
@@ -38,6 +38,11 @@ class SingleGame {
     
     func reorderEventsAt(firstPosition positionOne: Int, secondPosition positionTwo: Int) {
         self.events.swapAt(positionOne, positionTwo)
+    }
+    
+    
+    deinit {
+        events.removeAll()
     }
     
 }
