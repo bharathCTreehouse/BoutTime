@@ -94,6 +94,17 @@ extension ViewController: SingleGameViewProtocol {
         
     }
     
+    
+    func loadInformationFromWeb(_ urlString: String) {
+        
+        if urlString.isEmpty == false {
+            let webViewController: EventInformationWebViewController = EventInformationWebViewController(withEventInformationURLString: urlString)
+            present(webViewController, animated: true, completion: nil)
+        }
+        
+    }
+
+    
 }
 
 

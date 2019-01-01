@@ -27,6 +27,8 @@
 		4C15C10B21DA0E5E0067BC3D /* UniqueNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15C10A21DA0E5E0067BC3D /* UniqueNumberGenerator.swift */; };
 		4C15C10D21DA6D9E0067BC3D /* FinalScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15C10C21DA6D9E0067BC3D /* FinalScoreViewController.swift */; };
 		4C15C10F21DA6E1C0067BC3D /* FinalScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C15C10E21DA6E1C0067BC3D /* FinalScoreViewController.xib */; };
+		4C15C11221DBA3CA0067BC3D /* EventInformationWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15C11021DBA3CA0067BC3D /* EventInformationWebViewController.swift */; };
+		4C15C11321DBA3CB0067BC3D /* EventInformationWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C15C11121DBA3CA0067BC3D /* EventInformationWebViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		4C15C10A21DA0E5E0067BC3D /* UniqueNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniqueNumberGenerator.swift; sourceTree = "<group>"; };
 		4C15C10C21DA6D9E0067BC3D /* FinalScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalScoreViewController.swift; sourceTree = "<group>"; };
 		4C15C10E21DA6E1C0067BC3D /* FinalScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinalScoreViewController.xib; sourceTree = "<group>"; };
+		4C15C11021DBA3CA0067BC3D /* EventInformationWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInformationWebViewController.swift; sourceTree = "<group>"; };
+		4C15C11121DBA3CA0067BC3D /* EventInformationWebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventInformationWebViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,8 @@
 				4C15C10A21DA0E5E0067BC3D /* UniqueNumberGenerator.swift */,
 				4C15C10C21DA6D9E0067BC3D /* FinalScoreViewController.swift */,
 				4C15C10E21DA6E1C0067BC3D /* FinalScoreViewController.xib */,
+				4C15C11021DBA3CA0067BC3D /* EventInformationWebViewController.swift */,
+				4C15C11121DBA3CA0067BC3D /* EventInformationWebViewController.xib */,
 			);
 			path = SingleViewAppSwiftTemplate;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 				3A8AADD01DF9B85E00A2B931 /* Assets.xcassets in Resources */,
 				3A8AADCE1DF9B85E00A2B931 /* Main.storyboard in Resources */,
 				4C104BC221D4BC4100F9DEDF /* EventView.xib in Resources */,
+				4C15C11321DBA3CB0067BC3D /* EventInformationWebViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +313,7 @@
 				3A8AADCB1DF9B85E00A2B931 /* ViewController.swift in Sources */,
 				4C15C10921D96D280067BC3D /* EventArrayAddition.swift in Sources */,
 				4C0A117821D519F900105399 /* SingleGameView.swift in Sources */,
+				4C15C11221DBA3CA0067BC3D /* EventInformationWebViewController.swift in Sources */,
 				4C15C10121D7F7360067BC3D /* EventTimer.swift in Sources */,
 				4C104BBC21D4B4B900F9DEDF /* Event.swift in Sources */,
 				4C0A117A21D611F200105399 /* SingleGame.swift in Sources */,

@@ -8,7 +8,7 @@
 		<key>yearItOccurred</key>
 		<integer>360</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Samudragupta</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -16,7 +16,7 @@
 		<key>yearItOccurred</key>
 		<integer>606</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Harsha</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -24,7 +24,7 @@
 		<key>yearItOccurred</key>
 		<integer>712</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Muhammad_bin_Qasim</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -32,7 +32,7 @@
 		<key>yearItOccurred</key>
 		<integer>1025</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Mahmud_of_Ghazni</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -40,7 +40,7 @@
 		<key>yearItOccurred</key>
 		<integer>1191</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Battles_of_Tarain</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -48,7 +48,7 @@
 		<key>yearItOccurred</key>
 		<integer>1206</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Mamluk_dynasty_(Delhi)</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -56,7 +56,7 @@
 		<key>yearItOccurred</key>
 		<integer>1329</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Diocese</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -64,7 +64,7 @@
 		<key>yearItOccurred</key>
 		<integer>1497</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Vasco_da_Gama</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -72,7 +72,7 @@
 		<key>yearItOccurred</key>
 		<real>1498</real>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Vasco_da_Gama</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -80,7 +80,7 @@
 		<key>yearItOccurred</key>
 		<integer>1502</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Vasco_da_Gama</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -88,7 +88,7 @@
 		<key>yearItOccurred</key>
 		<real>1509</real>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Battle_of_Diu_(1509)</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -96,7 +96,7 @@
 		<key>yearItOccurred</key>
 		<integer>1556</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Fasli_calendar</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -104,7 +104,7 @@
 		<key>yearItOccurred</key>
 		<integer>1565</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Battle_of_Talikota</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -112,7 +112,7 @@
 		<key>yearItOccurred</key>
 		<integer>1575</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Battle_of_Tukaroi</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -120,7 +120,7 @@
 		<key>yearItOccurred</key>
 		<integer>1600</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/East_India_Company</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -128,7 +128,7 @@
 		<key>yearItOccurred</key>
 		<integer>1602</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Dutch_East_India_Company</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -136,7 +136,7 @@
 		<key>yearItOccurred</key>
 		<integer>1608</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Surat</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -144,7 +144,7 @@
 		<key>yearItOccurred</key>
 		<integer>1639</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Chennai</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -152,7 +152,7 @@
 		<key>yearItOccurred</key>
 		<integer>1668</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Mumbai</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -160,7 +160,7 @@
 		<key>yearItOccurred</key>
 		<integer>1739</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Battle_of_Karnal</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -168,7 +168,7 @@
 		<key>yearItOccurred</key>
 		<integer>1752</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Tiruchirappalli</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -176,7 +176,7 @@
 		<key>yearItOccurred</key>
 		<integer>1757</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Kolkata</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -184,7 +184,7 @@
 		<key>yearItOccurred</key>
 		<integer>1786</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Charles_Cornwallis,_1st_Marquess_Cornwallis</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -192,7 +192,7 @@
 		<key>yearItOccurred</key>
 		<integer>1798</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Nizam_of_Hyderabad</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -200,7 +200,7 @@
 		<key>yearItOccurred</key>
 		<integer>1853</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/History_of_rail_transport_in_India</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -208,7 +208,7 @@
 		<key>yearItOccurred</key>
 		<integer>1866</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Allahabad_High_Court</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -216,7 +216,7 @@
 		<key>yearItOccurred</key>
 		<integer>1892</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Dadabhai_Naoroji</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -224,7 +224,7 @@
 		<key>yearItOccurred</key>
 		<integer>1905</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Partition_of_Bengal_(1905)</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -232,7 +232,7 @@
 		<key>yearItOccurred</key>
 		<integer>1925</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Communist_Party_of_India</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -240,7 +240,7 @@
 		<key>yearItOccurred</key>
 		<integer>1929</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/India–United_Kingdom_relations</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -248,7 +248,7 @@
 		<key>yearItOccurred</key>
 		<integer>1932</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Indian_Air_Force</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -256,7 +256,7 @@
 		<key>yearItOccurred</key>
 		<integer>1936</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Odisha</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -264,7 +264,7 @@
 		<key>yearItOccurred</key>
 		<integer>1939</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Subhas_Chandra_Bose</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -272,7 +272,7 @@
 		<key>yearItOccurred</key>
 		<integer>1947</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/India#Early_modern_India</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -280,7 +280,7 @@
 		<key>yearItOccurred</key>
 		<real>1948</real>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Louis_Mountbatten,_1st_Earl_Mountbatten_of_Burma</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -288,7 +288,7 @@
 		<key>yearItOccurred</key>
 		<integer>1950</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/India</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -296,7 +296,7 @@
 		<key>yearItOccurred</key>
 		<integer>1956</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Delhi</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -304,7 +304,7 @@
 		<key>yearItOccurred</key>
 		<integer>1971</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Battle_of_Garibpur</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -312,7 +312,7 @@
 		<key>yearItOccurred</key>
 		<real>1974</real>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Smiling_Buddha</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -320,7 +320,7 @@
 		<key>yearItOccurred</key>
 		<real>1975</real>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Aryabhata_(satellite)</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -328,7 +328,7 @@
 		<key>yearItOccurred</key>
 		<integer>1980</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Rohini_(satellite)</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -336,7 +336,7 @@
 		<key>yearItOccurred</key>
 		<integer>2008</integer>
 		<key>informationLink</key>
-		<string>www</string>
+		<string>https://en.wikipedia.org/wiki/Chandrayaan_programme</string>
 	</dict>
 </array>
 </plist>

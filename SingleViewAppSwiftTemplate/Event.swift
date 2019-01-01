@@ -36,13 +36,6 @@ extension Event: EventDisplay {
     var eventInformationWebLink: String? {
         return informationLink
     }
-    
-    
-//    public static func == (lhs: Event, rhs: Event) -> Bool {
-//
-//        return lhs.title == rhs.title && lhs.yearItOccurred == rhs.yearItOccurred
-//    }
-
 }
 
 

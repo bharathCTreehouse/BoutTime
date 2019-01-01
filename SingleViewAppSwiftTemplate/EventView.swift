@@ -29,7 +29,7 @@ class EventView: UIView {
     
     weak var eventView: UIView? = nil  //Will be loaded from an XIB.
     
-    fileprivate var event: EventDisplay? = nil {
+    var event: EventDisplay? = nil {
         didSet {
             setupEventView()
         }

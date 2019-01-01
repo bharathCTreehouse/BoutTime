@@ -11,6 +11,7 @@ import UIKit
 
 protocol SingleGameViewProtocol: class {
     func loadNextGame()
+    func loadInformationFromWeb(_ urlString: String)
 }
 
 
@@ -78,6 +79,7 @@ class SingleGameView: UIView {
                     direction = .onlyUp
                 }
                 let eventView: EventView = EventView(withEvent: event, positionInGame: tracker, eventMovingDirection: direction)
+                addTapGestureRecognizerOn(eventView: eventView)
                 eventViews.append(eventView)
             }
         }
@@ -391,6 +393,37 @@ extension SingleGameView {
         UIView.animate(withDuration: 0.5, animations: { [unowned self]() -> Void in
             self.layoutIfNeeded()
         })
+    }
+    
+}
+
+
+
+extension SingleGameView {
+    
+    func addTapGestureRecognizerOn(eventView: EventView) {
+        
+        let event: EventDisplay? = eventView.event
+        
+        if let event = event, let _ = event.eventInformationWebLink {
+            let eventInfoGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showEventInformation(_:)))
+            eventView.addGestureRecognizer(eventInfoGestureRecognizer)
+        }
+        
+    }
+    
+    
+    func showEventInformation(_ sender: UITapGestureRecognizer) {
+        
+        if singleGame?.currentGameStatus == .completed {
+            
+            //Show the web view only when a game is complete.
+            
+            let eventView: EventView? = sender.view as? EventView
+            if let eventView = eventView, let link = eventView.event?.eventInformationWebLink {
+                delegate?.loadInformationFromWeb(link)
+            }
+        }
     }
     
 }
