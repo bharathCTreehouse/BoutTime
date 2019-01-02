@@ -83,10 +83,18 @@ extension EventInformationWebViewController {
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView)
         webView.navigationDelegate = self
-        webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        if let safeGuide = view.safeAreaLayoutGuideToBeUsed() {
+            webView.leadingAnchor.constraint(equalTo: safeGuide.leadingAnchor).isActive = true
+            webView.trailingAnchor.constraint(equalTo: safeGuide.trailingAnchor).isActive = true
+            webView.bottomAnchor.constraint(equalTo: safeGuide.bottomAnchor).isActive = true
+        }
+        else {
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        }
         webView.topAnchor.constraint(equalTo: closeWebViewImageView.bottomAnchor).isActive = true
-        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     

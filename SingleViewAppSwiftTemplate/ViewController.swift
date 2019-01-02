@@ -66,14 +66,18 @@ class ViewController: UIViewController {
             if safeAreaGuide == nil {
                 //Safe area guide not available.
                 currentGameView!.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+                currentGameView!.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+                currentGameView!.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+                currentGameView!.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
             }
             else {
                 //Safe area guide available.
                 currentGameView!.topAnchor.constraint(equalTo: safeAreaGuide!.topAnchor).isActive = true
+                currentGameView!.leadingAnchor.constraint(equalTo: safeAreaGuide!.leadingAnchor).isActive = true
+                currentGameView!.trailingAnchor.constraint(equalTo: safeAreaGuide!.trailingAnchor).isActive = true
+                currentGameView!.bottomAnchor.constraint(equalTo: safeAreaGuide!.bottomAnchor).isActive = true
             }
-            currentGameView!.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-            currentGameView!.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-            currentGameView!.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+           
         }
         
     }
