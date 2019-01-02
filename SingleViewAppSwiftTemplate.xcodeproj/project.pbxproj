@@ -129,28 +129,13 @@
 		3A8AADC71DF9B85E00A2B931 /* SingleViewAppSwiftTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				4C15C11921DD56B50067BC3D /* Data */,
+				4C15C11821DD56730067BC3D /* Controller */,
+				4C15C11721DD56030067BC3D /* View */,
+				4C15C11621DD559B0067BC3D /* Misc */,
 				3A8AADC81DF9B85E00A2B931 /* AppDelegate.swift */,
-				3A8AADCA1DF9B85E00A2B931 /* ViewController.swift */,
-				3A8AADCC1DF9B85E00A2B931 /* Main.storyboard */,
 				3A8AADCF1DF9B85E00A2B931 /* Assets.xcassets */,
-				3A8AADD11DF9B85E00A2B931 /* LaunchScreen.storyboard */,
 				3A8AADD41DF9B85E00A2B931 /* Info.plist */,
-				4C104BBB21D4B4B900F9DEDF /* Event.swift */,
-				4C104BBD21D4B9EB00F9DEDF /* EventView.swift */,
-				4C104BC121D4BC4100F9DEDF /* EventView.xib */,
-				4C0A117721D519F900105399 /* SingleGameView.swift */,
-				4C0A117921D611F200105399 /* SingleGame.swift */,
-				4C15C10021D7F7360067BC3D /* EventTimer.swift */,
-				4C15C10221D92EA70067BC3D /* GameController.swift */,
-				4C15C10421D94BB00067BC3D /* PlistConverter.swift */,
-				4C15C10621D94F370067BC3D /* Events.plist */,
-				4C15C10821D96D280067BC3D /* EventArrayAddition.swift */,
-				4C15C10A21DA0E5E0067BC3D /* UniqueNumberGenerator.swift */,
-				4C15C10C21DA6D9E0067BC3D /* FinalScoreViewController.swift */,
-				4C15C10E21DA6E1C0067BC3D /* FinalScoreViewController.xib */,
-				4C15C11021DBA3CA0067BC3D /* EventInformationWebViewController.swift */,
-				4C15C11121DBA3CA0067BC3D /* EventInformationWebViewController.xib */,
-				4C15C11421DBEACC0067BC3D /* ViewAdditions.swift */,
 			);
 			path = SingleViewAppSwiftTemplate;
 			sourceTree = "<group>";
@@ -171,6 +156,53 @@
 				3A8AADEA1DF9B85E00A2B931 /* Info.plist */,
 			);
 			path = SingleViewAppSwiftTemplateUITests;
+			sourceTree = "<group>";
+		};
+		4C15C11621DD559B0067BC3D /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				4C15C10021D7F7360067BC3D /* EventTimer.swift */,
+				4C15C11421DBEACC0067BC3D /* ViewAdditions.swift */,
+				4C15C10A21DA0E5E0067BC3D /* UniqueNumberGenerator.swift */,
+				4C15C10421D94BB00067BC3D /* PlistConverter.swift */,
+				4C15C10821D96D280067BC3D /* EventArrayAddition.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		4C15C11721DD56030067BC3D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C15C11121DBA3CA0067BC3D /* EventInformationWebViewController.xib */,
+				4C15C10E21DA6E1C0067BC3D /* FinalScoreViewController.xib */,
+				4C0A117721D519F900105399 /* SingleGameView.swift */,
+				4C104BBD21D4B9EB00F9DEDF /* EventView.swift */,
+				4C104BC121D4BC4100F9DEDF /* EventView.xib */,
+				3A8AADD11DF9B85E00A2B931 /* LaunchScreen.storyboard */,
+				3A8AADCC1DF9B85E00A2B931 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4C15C11821DD56730067BC3D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C15C10221D92EA70067BC3D /* GameController.swift */,
+				4C15C11021DBA3CA0067BC3D /* EventInformationWebViewController.swift */,
+				4C15C10C21DA6D9E0067BC3D /* FinalScoreViewController.swift */,
+				3A8AADCA1DF9B85E00A2B931 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4C15C11921DD56B50067BC3D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4C15C10621D94F370067BC3D /* Events.plist */,
+				4C0A117921D611F200105399 /* SingleGame.swift */,
+				4C104BBB21D4B4B900F9DEDF /* Event.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
