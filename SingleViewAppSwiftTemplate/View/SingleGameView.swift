@@ -118,7 +118,7 @@ extension SingleGameView {
         
         if eventViewConstraints.isEmpty == true {
             
-            //Event view constraints have not been setup. Set them up and store the top constraint of event event view in an array. This will be used to move the view up and down.
+            //Event view constraints have not been setup. Set them up and store the top constraint of every event view in an array. This will be used to move the view up and down.
             
             for (tracker, eventView) in eventViews.enumerated() {
                 
@@ -281,8 +281,6 @@ extension SingleGameView {
     
     func swapEventViewPresentIn(_ positionOne: Int, _ positionTwo: Int) {
         
-        //Split this method. It has become too big.
-        
         self.eventViews.swapAt(positionOne, positionTwo)
         self.eventViewConstraints.swapAt(positionOne, positionTwo)
         var isLastEventViewUpdated: Bool = false
@@ -293,14 +291,7 @@ extension SingleGameView {
             let eventViewToMove: EventView = self.eventViews[positionOne]
             eventViewToMove.eventPosition = positionOne
             
-            var constraintToModify: NSLayoutConstraint = eventViewConstraints[positionOne]
-            
-            constraintToModify.isActive = false
-            constraintToModify = eventViewToMove.topAnchor.constraint(equalTo: eventViewForReference.bottomAnchor, constant: 9.0)
-            constraintToModify.isActive = true
-            
-            self.eventViewConstraints.remove(at: positionOne)
-            self.eventViewConstraints.insert(constraintToModify, at: positionOne)
+            modifyEventView(eventViewToMove, presentInPosition: positionOne, withEventViewReference: eventViewForReference)
             
             if positionOne == self.eventViews.count - 1 {
                 //Last event view
@@ -317,14 +308,7 @@ extension SingleGameView {
             let eventViewToMove: EventView = self.eventViews[positionOne]
             eventViewToMove.eventPosition = positionOne
             
-            var constraintToModify: NSLayoutConstraint = eventViewConstraints[positionOne]
-            
-            constraintToModify.isActive = false
-            constraintToModify = eventViewToMove.topAnchor.constraint(equalTo: topAnchor, constant: 18.0)
-            constraintToModify.isActive = true
-            
-            self.eventViewConstraints.remove(at: positionOne)
-            self.eventViewConstraints.insert(constraintToModify, at: positionOne)
+            modifyEventView(eventViewToMove, presentInPosition: positionOne, withEventViewReference: nil)
             eventViewToMove.updateMovingDirection(.onlyDown)
             
         }
@@ -336,14 +320,7 @@ extension SingleGameView {
             let eventViewToMove: EventView = self.eventViews[positionTwo]
             eventViewToMove.eventPosition = positionTwo
             
-            var constraintToModify: NSLayoutConstraint =  eventViewConstraints[positionTwo]
-            
-            constraintToModify.isActive = false
-            constraintToModify = eventViewToMove.topAnchor.constraint(equalTo: eventViewForReference.bottomAnchor, constant: 9.0)
-            constraintToModify.isActive = true
-            
-            self.eventViewConstraints.remove(at: positionTwo)
-            self.eventViewConstraints.insert(constraintToModify, at: positionTwo)
+            modifyEventView(eventViewToMove, presentInPosition: positionTwo, withEventViewReference: eventViewForReference)
             
             if positionTwo == self.eventViews.count - 1 {
                 //Last event view
@@ -359,14 +336,8 @@ extension SingleGameView {
             //first event
             let eventViewToMove: EventView = self.eventViews[positionTwo]
             eventViewToMove.eventPosition = positionTwo
-            var constraintToModify: NSLayoutConstraint =  eventViewConstraints[positionTwo]
             
-            constraintToModify.isActive = false
-            constraintToModify = eventViewToMove.topAnchor.constraint(equalTo: topAnchor, constant: 18.0)
-            constraintToModify.isActive = true
-            
-            self.eventViewConstraints.remove(at: positionTwo)
-            self.eventViewConstraints.insert(constraintToModify, at: positionTwo)
+            modifyEventView(eventViewToMove, presentInPosition: positionTwo, withEventViewReference: nil)
             eventViewToMove.updateMovingDirection(.onlyDown)
             
         }
@@ -376,22 +347,14 @@ extension SingleGameView {
         if positionOne > positionTwo {
             positionToModify = positionOne
         }
-        
         positionToModify = positionToModify + 1
+        
         if positionToModify < self.eventViews.count {
             
             let eventViewForReference: EventView = self.eventViews[positionToModify - 1]
             let eventViewToMove: EventView = self.eventViews[positionToModify]
             
-            var constraintToModify: NSLayoutConstraint =  eventViewConstraints[positionToModify]
-            
-            constraintToModify.isActive = false
-            constraintToModify = eventViewToMove.topAnchor.constraint(equalTo: eventViewForReference.bottomAnchor, constant: 9.0)
-            constraintToModify.isActive = true
-            
-            self.eventViewConstraints.remove(at: positionToModify)
-            self.eventViewConstraints.insert(constraintToModify, at: positionToModify)
-            
+            modifyEventView(eventViewToMove, presentInPosition: positionToModify, withEventViewReference: eventViewForReference)
         }
         
         
@@ -408,6 +371,25 @@ extension SingleGameView {
         UIView.animate(withDuration: 0.5, animations: { [unowned self]() -> Void in
             self.layoutIfNeeded()
         })
+    }
+    
+    
+    
+    func modifyEventView(_ eventViewToMove: EventView, presentInPosition position: Int, withEventViewReference eventViewForReference: EventView?) {
+        
+        var constraintToModify: NSLayoutConstraint = eventViewConstraints[position]
+        constraintToModify.isActive = false
+        
+        if let eventViewForReference = eventViewForReference {
+            constraintToModify = eventViewToMove.topAnchor.constraint(equalTo: eventViewForReference.bottomAnchor, constant: 9.0)
+        }
+        else {
+            constraintToModify = eventViewToMove.topAnchor.constraint(equalTo: topAnchor, constant: 18.0)
+        }
+        constraintToModify.isActive = true
+        
+        self.eventViewConstraints.remove(at: position)
+        self.eventViewConstraints.insert(constraintToModify, at: position)
     }
     
 }
