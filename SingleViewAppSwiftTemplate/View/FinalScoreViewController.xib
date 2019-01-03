@@ -28,13 +28,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final score" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ldi-ME-iXx">
-                    <rect key="frame" x="119.5" y="330.5" width="136" height="32.5"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                    <rect key="frame" x="112" y="320.5" width="151" height="36"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifA-8J-9dW">
-                    <rect key="frame" x="131.5" y="477" width="112" height="35"/>
+                    <rect key="frame" x="131.5" y="470.5" width="112" height="35"/>
                     <state key="normal" backgroundImage="PlayAgain"/>
                     <connections>
                         <action selector="playAgainButtonTapped:" destination="-1" eventType="touchUpInside" id="btw-oL-hw3"/>
@@ -46,7 +46,7 @@
                 <constraint firstItem="ifA-8J-9dW" firstAttribute="top" secondItem="Ldi-ME-iXx" secondAttribute="bottom" constant="114" id="5dF-KZ-fE2"/>
                 <constraint firstItem="cfd-Cn-buJ" firstAttribute="centerX" secondItem="kXE-nU-8ny" secondAttribute="centerX" id="YbY-dF-Bdv"/>
                 <constraint firstItem="cfd-Cn-buJ" firstAttribute="centerY" secondItem="kXE-nU-8ny" secondAttribute="centerY" constant="-30" id="kWN-g1-fWP"/>
-                <constraint firstItem="Ldi-ME-iXx" firstAttribute="top" secondItem="cfd-Cn-buJ" secondAttribute="bottom" constant="15" id="pUX-9j-Fym"/>
+                <constraint firstItem="Ldi-ME-iXx" firstAttribute="top" secondItem="cfd-Cn-buJ" secondAttribute="bottom" constant="5" id="pUX-9j-Fym"/>
                 <constraint firstItem="Ldi-ME-iXx" firstAttribute="centerX" secondItem="kXE-nU-8ny" secondAttribute="centerX" id="tBb-5U-3XL"/>
                 <constraint firstItem="ifA-8J-9dW" firstAttribute="centerX" secondItem="kXE-nU-8ny" secondAttribute="centerX" id="zX4-qI-kgt"/>
             </constraints>
