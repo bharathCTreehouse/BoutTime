@@ -156,7 +156,7 @@ extension SingleGameView {
             timerLabel!.numberOfLines = 0
             timerLabel!.translatesAutoresizingMaskIntoConstraints = false
             timerLabel!.textColor = UIColor.white
-            timerLabel!.font = UIFont.systemFont(ofSize: 40.0, weight: UIFontWeightRegular)
+            timerLabel!.font = UIFont.systemFont(ofSize: 40.0, weight: UIFont.Weight.regular)
             addSubview(timerLabel!)
             timerLabel!.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
             let eventView: EventView? = eventViews.last
@@ -182,7 +182,7 @@ extension SingleGameView {
     }
     
     
-    func nextGameTapped(_ sender: UIButton) {
+    @objc func nextGameTapped(_ sender: UIButton) {
         delegate?.loadNextGame()
     }
     
@@ -193,7 +193,7 @@ extension SingleGameView {
             instructionLabel = UILabel()
             instructionLabel!.numberOfLines = 0
             instructionLabel!.translatesAutoresizingMaskIntoConstraints = false
-            instructionLabel!.font = UIFont.systemFont(ofSize: 18.0, weight: UIFontWeightRegular)
+            instructionLabel!.font = UIFont.systemFont(ofSize: 18.0, weight: UIFont.Weight.regular)
             instructionLabel!.textColor = UIColor(red: 0.0, green: 111.0/255.0, blue: 148.0/255.0, alpha: 1.0)
             addSubview(instructionLabel!)
             instructionLabelTopConstraint = instructionLabel!.topAnchor.constraint(equalTo: timerLabel!.bottomAnchor, constant: 9.0)
@@ -410,7 +410,7 @@ extension SingleGameView {
     }
     
     
-    func showEventInformation(_ sender: UITapGestureRecognizer) {
+    @objc func showEventInformation(_ sender: UITapGestureRecognizer) {
         
         if singleGame?.currentGameStatus == .completed {
             
