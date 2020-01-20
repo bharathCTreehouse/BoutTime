@@ -102,7 +102,7 @@ extension EventInformationWebViewController {
         
         if webView.viewWithTag(10) == nil {
             
-            let activityView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+            let activityView: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
             activityView.startAnimating()
             activityView.tag = 10
             activityView.translatesAutoresizingMaskIntoConstraints = false

@@ -155,7 +155,7 @@ extension ViewController: SingleGameViewProtocol {
 //Reordering.
 extension ViewController {
     
-    func eventDirectionButtonTapped(_ sender: Notification) {
+    @objc func eventDirectionButtonTapped(_ sender: Notification) {
         
         let direction: EventMovingDirection? = (sender.userInfo!["direction"]) as? EventMovingDirection
         let position: Int? = (sender.userInfo!["position"]) as? Int
@@ -179,7 +179,7 @@ extension ViewController {
         guard let event = event else {
             return
         }
-        if(event.subtype == UIEventSubtype.motionShake) {
+        if(event.subtype == UIEvent.EventSubtype.motionShake) {
             gameController?.finishCurrentGame()
         }
     }
