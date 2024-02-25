@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol SingleGameViewProtocol: class {
+protocol SingleGameViewProtocol: AnyObject {
     func loadNextGame()
     func loadInformationFromWeb(_ urlString: String)
 }

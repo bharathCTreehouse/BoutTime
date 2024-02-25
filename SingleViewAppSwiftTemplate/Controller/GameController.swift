@@ -10,7 +10,7 @@ import Foundation
 import GameKit
 
 
-protocol GameUpdateProtocol: class {
+protocol GameUpdateProtocol: AnyObject {
     
     func updateWithGameStatus(_ gameStatus: GameStatus)
     func updateWithGameAnswerStatus(_ answerStatus: GameAnswerStatus)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TimerProtocol: class {
+protocol TimerProtocol: AnyObject {
     func updateWithCurrentTimerValue(_ value: Int)
 }
 
